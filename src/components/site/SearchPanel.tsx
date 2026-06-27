@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Plane, Hotel, Home, Car, MapPin, ShieldCheck, Search, Calendar, Users, ArrowLeftRight } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
@@ -47,6 +48,14 @@ function Field({
 
 export function SearchPanel() {
   const [active, setActive] = useState<TabId>("flights");
+  const targetPath = active === "flights" ? "/flights" : "/hotels";
+  const SubmitButton = (
+    <Button asChild size="lg" className="h-auto self-stretch gap-2 rounded-xl px-7 text-base font-semibold">
+      <Link to={targetPath}>
+        <Search className="h-4 w-4" /> Найти
+      </Link>
+    </Button>
+  );
 
   return (
     <div className="mx-auto w-full max-w-5xl rounded-3xl bg-card/95 p-2 shadow-glow ring-1 ring-border/60 backdrop-blur-xl">
