@@ -57,9 +57,19 @@ export function SiteFooter() {
         ))}
       </div>
       <div className="border-t border-border">
-        <div className="container mx-auto flex flex-col items-start justify-between gap-3 px-4 py-6 text-xs text-muted-foreground md:flex-row md:items-center md:px-6">
-          <p>© 2026 Wanderly. Все права защищены. Сервис работает по партнёрской модели.</p>
-          <p>Сделано с любовью к путешествиям ✈️</p>
+        <div className="container mx-auto grid gap-2 px-4 py-6 text-xs text-muted-foreground md:px-6">
+          <p>
+            ООО «Вандерли», ОГРН 0000000000000, ИНН 0000000000. Сервер расположен на территории Российской Федерации. Цены указаны в российских рублях (₽).
+          </p>
+          <p>
+            Обработка персональных данных осуществляется в соответствии с Федеральным законом № 152-ФЗ «О персональных данных». Используя сайт, вы соглашаетесь с{" "}
+            <a href="#" className="underline hover:text-foreground">Политикой конфиденциальности</a> и{" "}
+            <a href="#" className="underline hover:text-foreground">Согласием на обработку ПДн</a>.
+          </p>
+          <div className="flex flex-col items-start justify-between gap-2 pt-2 md:flex-row md:items-center">
+            <p>© 2026 Wanderly. Сервис работает по партнёрской (affiliate) модели.</p>
+            <p>Время по МСК (UTC+3) · Сделано с любовью к путешествиям ✈️</p>
+          </div>
         </div>
       </div>
     </footer>

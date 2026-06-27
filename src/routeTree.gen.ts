@@ -9,10 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as HotelsRouteImport } from './routes/hotels'
 import { Route as FlightsRouteImport } from './routes/flights'
 import { Route as IndexRouteImport } from './routes/index'
 
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const HotelsRoute = HotelsRouteImport.update({
   id: '/hotels',
   path: '/hotels',
@@ -33,34 +39,45 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/flights': typeof FlightsRoute
   '/hotels': typeof HotelsRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/flights': typeof FlightsRoute
   '/hotels': typeof HotelsRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/flights': typeof FlightsRoute
   '/hotels': typeof HotelsRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/flights' | '/hotels'
+  fullPaths: '/' | '/flights' | '/hotels' | '/sitemap.xml'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/flights' | '/hotels'
-  id: '__root__' | '/' | '/flights' | '/hotels'
+  to: '/' | '/flights' | '/hotels' | '/sitemap.xml'
+  id: '__root__' | '/' | '/flights' | '/hotels' | '/sitemap.xml'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   FlightsRoute: typeof FlightsRoute
   HotelsRoute: typeof HotelsRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/hotels': {
       id: '/hotels'
       path: '/hotels'
@@ -89,6 +106,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   FlightsRoute: FlightsRoute,
   HotelsRoute: HotelsRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
