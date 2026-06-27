@@ -91,9 +91,7 @@ export function SearchPanel() {
             <Field label="Куда" icon={Plane} placeholder="Стамбул" />
             <Field label="Когда" icon={Calendar} placeholder="14 авг" />
             <Field label="Пассажиры" icon={Users} placeholder="1 взрослый" />
-            {SubmitButton}{/*
-              */}
-            </Button>
+            {SubmitButton}
           </div>
         )}
         {active === "hotels" && (
@@ -102,9 +100,7 @@ export function SearchPanel() {
             <Field label="Заезд" icon={Calendar} placeholder="20 авг" />
             <Field label="Выезд" icon={Calendar} placeholder="27 авг" />
             <Field label="Гости" icon={Users} placeholder="2 гостя, 1 номер" />
-            {SubmitButton}{/*
-              */}
-            </Button>
+            {SubmitButton}
           </div>
         )}
         {active === "stays" && (
@@ -113,9 +109,7 @@ export function SearchPanel() {
             <Field label="Заезд" icon={Calendar} placeholder="1 сен" />
             <Field label="Выезд" icon={Calendar} placeholder="8 сен" />
             <Field label="Гости" icon={Users} placeholder="3 гостя" />
-            {SubmitButton}{/*
-              */}
-            </Button>
+            {SubmitButton}
           </div>
         )}
         {active === "cars" && (
@@ -123,9 +117,7 @@ export function SearchPanel() {
             <Field label="Место получения" icon={Car} placeholder="Аэропорт Антальи" />
             <Field label="Получение" icon={Calendar} placeholder="5 авг, 12:00" />
             <Field label="Возврат" icon={Calendar} placeholder="12 авг, 12:00" />
-            {SubmitButton}{/*
-              */}
-            </Button>
+            {SubmitButton}
           </div>
         )}
         {active === "transfer" && (
@@ -134,9 +126,7 @@ export function SearchPanel() {
             <Field label="Куда" icon={MapPin} placeholder="Отель Marina" />
             <Field label="Дата" icon={Calendar} placeholder="20 авг" />
             <Field label="Пассажиры" icon={Users} placeholder="2 пассажира" />
-            {SubmitButton}{/*
-              */}
-            </Button>
+            {SubmitButton}
           </div>
         )}
         {active === "insurance" && (
@@ -145,9 +135,7 @@ export function SearchPanel() {
             <Field label="С" icon={Calendar} placeholder="1 сен" />
             <Field label="По" icon={Calendar} placeholder="14 сен" />
             <Field label="Туристы" icon={Users} placeholder="1 взрослый" />
-            {SubmitButton}{/*
-              */}
-            </Button>
+            {SubmitButton}
           </div>
         )}
 
