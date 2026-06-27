@@ -52,7 +52,7 @@ export function SearchPanel() {
   const SubmitButton = (
     <Button asChild size="lg" className="h-auto self-stretch gap-2 rounded-xl px-7 text-base font-semibold">
       <Link to={targetPath}>
-        */}
+        <Search className="h-4 w-4" /> Найти
       </Link>
     </Button>
   );
