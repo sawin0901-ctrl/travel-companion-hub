@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Plane, Hotel, Home, Car, MapPin, ShieldCheck, Search, Calendar, Users, ArrowLeftRight } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
@@ -47,6 +48,14 @@ function Field({
 
 export function SearchPanel() {
   const [active, setActive] = useState<TabId>("flights");
+  const targetPath = active === "flights" ? "/flights" : "/hotels";
+  const SubmitButton = (
+    <Button asChild size="lg" className="h-auto self-stretch gap-2 rounded-xl px-7 text-base font-semibold">
+      <Link to={targetPath}>
+        <Search className="h-4 w-4" /> Найти
+      </Link>
+    </Button>
+  );
 
   return (
     <div className="mx-auto w-full max-w-5xl rounded-3xl bg-card/95 p-2 shadow-glow ring-1 ring-border/60 backdrop-blur-xl">
@@ -82,9 +91,7 @@ export function SearchPanel() {
             <Field label="Куда" icon={Plane} placeholder="Стамбул" />
             <Field label="Когда" icon={Calendar} placeholder="14 авг" />
             <Field label="Пассажиры" icon={Users} placeholder="1 взрослый" />
-            <Button size="lg" className="h-auto self-stretch gap-2 rounded-xl px-7 text-base font-semibold">
-              <Search className="h-4 w-4" /> Найти
-            </Button>
+            {SubmitButton}
           </div>
         )}
         {active === "hotels" && (
@@ -93,9 +100,7 @@ export function SearchPanel() {
             <Field label="Заезд" icon={Calendar} placeholder="20 авг" />
             <Field label="Выезд" icon={Calendar} placeholder="27 авг" />
             <Field label="Гости" icon={Users} placeholder="2 гостя, 1 номер" />
-            <Button size="lg" className="h-auto self-stretch gap-2 rounded-xl px-7 text-base font-semibold">
-              <Search className="h-4 w-4" /> Найти
-            </Button>
+            {SubmitButton}
           </div>
         )}
         {active === "stays" && (
@@ -104,9 +109,7 @@ export function SearchPanel() {
             <Field label="Заезд" icon={Calendar} placeholder="1 сен" />
             <Field label="Выезд" icon={Calendar} placeholder="8 сен" />
             <Field label="Гости" icon={Users} placeholder="3 гостя" />
-            <Button size="lg" className="h-auto self-stretch gap-2 rounded-xl px-7 text-base font-semibold">
-              <Search className="h-4 w-4" /> Найти
-            </Button>
+            {SubmitButton}
           </div>
         )}
         {active === "cars" && (
@@ -114,9 +117,7 @@ export function SearchPanel() {
             <Field label="Место получения" icon={Car} placeholder="Аэропорт Антальи" />
             <Field label="Получение" icon={Calendar} placeholder="5 авг, 12:00" />
             <Field label="Возврат" icon={Calendar} placeholder="12 авг, 12:00" />
-            <Button size="lg" className="h-auto self-stretch gap-2 rounded-xl px-7 text-base font-semibold">
-              <Search className="h-4 w-4" /> Найти
-            </Button>
+            {SubmitButton}
           </div>
         )}
         {active === "transfer" && (
@@ -125,9 +126,7 @@ export function SearchPanel() {
             <Field label="Куда" icon={MapPin} placeholder="Отель Marina" />
             <Field label="Дата" icon={Calendar} placeholder="20 авг" />
             <Field label="Пассажиры" icon={Users} placeholder="2 пассажира" />
-            <Button size="lg" className="h-auto self-stretch gap-2 rounded-xl px-7 text-base font-semibold">
-              <Search className="h-4 w-4" /> Найти
-            </Button>
+            {SubmitButton}
           </div>
         )}
         {active === "insurance" && (
@@ -136,9 +135,7 @@ export function SearchPanel() {
             <Field label="С" icon={Calendar} placeholder="1 сен" />
             <Field label="По" icon={Calendar} placeholder="14 сен" />
             <Field label="Туристы" icon={Users} placeholder="1 взрослый" />
-            <Button size="lg" className="h-auto self-stretch gap-2 rounded-xl px-7 text-base font-semibold">
-              <Search className="h-4 w-4" /> Найти
-            </Button>
+            {SubmitButton}
           </div>
         )}
 
