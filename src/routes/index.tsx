@@ -66,16 +66,18 @@ function Hero() {
       />
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background/40 via-background/10 to-background" />
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-background/60 via-transparent to-transparent" />
+      <div className="absolute inset-0 -z-10 bg-black/45" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/55 via-black/25 to-background" />
 
       <div className="container mx-auto px-4 pb-16 pt-20 md:px-6 md:pb-24 md:pt-28">
-        <div className="mx-auto max-w-3xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-semibold text-foreground/90 ring-1 ring-border/60">
+        <div className="mx-auto max-w-3xl text-center [text-shadow:0_2px_18px_rgb(0_0_0/0.55)]">
+          <span className="inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-1.5 text-xs font-semibold text-white ring-1 ring-white/30 backdrop-blur-md">
             ✨ Сравниваем 850+ партнёров одним поиском
           </span>
-          <h1 className="mt-5 text-balance font-display text-4xl font-bold leading-[1.05] tracking-tight md:text-6xl lg:text-7xl">
-            Найдите идеальное <span className="text-gradient-ocean">путешествие</span> — быстрее и дешевле
+          <h1 className="mt-5 text-balance font-display text-4xl font-bold leading-[1.05] tracking-tight text-white md:text-6xl lg:text-7xl">
+            Найдите идеальное <span className="bg-gradient-to-r from-sky-200 to-coral bg-clip-text text-transparent">путешествие</span> — быстрее и дешевле
           </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-pretty text-base text-muted-foreground md:text-lg">
+          <p className="mx-auto mt-5 max-w-2xl text-pretty text-base leading-relaxed text-white/90 md:text-lg">
             Авиабилеты, отели, квартиры, аренда авто, трансферы и страховки. Одна форма поиска — лучшие цены от Booking, Aviasales, Kiwi, Rentalcars и сотен других партнёров.
           </p>
         </div>
@@ -84,14 +86,14 @@ function Hero() {
           <SearchPanel />
         </div>
 
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-xs font-semibold uppercase tracking-wider text-white/85 [text-shadow:0_1px_8px_rgb(0_0_0/0.6)]">
           <span>В партнёрстве с</span>
-          <span className="text-foreground/70">Booking</span>
-          <span className="text-foreground/70">Aviasales</span>
-          <span className="text-foreground/70">Kiwi</span>
-          <span className="text-foreground/70">Rentalcars</span>
-          <span className="text-foreground/70">Tripster</span>
-          <span className="text-foreground/70">Cherehapa</span>
+          <span>Booking</span>
+          <span>Aviasales</span>
+          <span>Kiwi</span>
+          <span>Rentalcars</span>
+          <span>Tripster</span>
+          <span>Cherehapa</span>
         </div>
       </div>
     </section>
