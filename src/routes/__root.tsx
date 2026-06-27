@@ -77,14 +77,22 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Wanderly — путешествия по лучшей цене" },
+      { name: "description", content: "Wanderly — российский маркетплейс путешествий: авиабилеты, отели, апартаменты, аренда авто, трансферы и страховки. Цены в рублях." },
+      { name: "keywords", content: "авиабилеты, отели, бронирование, квартиры посуточно, аренда авто, туры, путешествия, Россия" },
+      { name: "author", content: "Wanderly" },
+      { name: "geo.region", content: "RU" },
+      { name: "geo.placename", content: "Russia" },
+      { httpEquiv: "Content-Language", content: "ru" },
+      { property: "og:title", content: "Wanderly — путешествия по лучшей цене" },
+      { property: "og:description", content: "Авиабилеты, отели и жильё по всему миру. Цены в рублях, оплата российскими картами." },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { property: "og:locale", content: "ru_RU" },
+      { property: "og:site_name", content: "Wanderly" },
+      { name: "twitter:card", content: "summary_large_image" },
+      // Yandex / Google site verification — заменить на реальные токены
+      { name: "yandex-verification", content: "REPLACE_WITH_YANDEX_TOKEN" },
+      { name: "google-site-verification", content: "REPLACE_WITH_GOOGLE_TOKEN" },
     ],
     links: [
       {
@@ -101,13 +109,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="ru">
       <head>
         <HeadContent />
       </head>
       <body>
         {children}
         <Scripts />
+        {/* Яндекс.Метрика — заменить XXXXXXXX на ID счётчика */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js','ym');if(typeof ym==='function'){ym(XXXXXXXX,'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true})}`,
+          }}
+        />
       </body>
     </html>
   );
