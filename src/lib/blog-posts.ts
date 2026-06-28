@@ -305,9 +305,6 @@ export const BLOG_POSTS: BlogPost[] = [
     [],[]),
 ];
 
-// убираем дублирующее закрытие массива
-];
-
 export function getPost(slug: string): BlogPost | undefined {
   return BLOG_POSTS.find((p) => p.slug === slug);
 }
