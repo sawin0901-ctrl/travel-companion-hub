@@ -1,20 +1,12 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Plane, Hotel, Home, Car, MapPin, ShieldCheck, Search, Calendar, Users, ArrowLeftRight } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
+import { ALL_CATEGORIES, useEnabledCategories, type CategoryId } from "@/lib/categories";
 
-const tabs = [
-  { id: "flights", label: "Авиабилеты", icon: Plane },
-  { id: "hotels", label: "Отели", icon: Hotel },
-  { id: "stays", label: "Жильё", icon: Home },
-  { id: "cars", label: "Авто", icon: Car },
-  { id: "transfer", label: "Трансферы", icon: MapPin },
-  { id: "insurance", label: "Страховки", icon: ShieldCheck },
-] as const;
-
-type TabId = (typeof tabs)[number]["id"];
+type TabId = CategoryId;
 
 function Field({
   label,
@@ -47,7 +39,28 @@ function Field({
 }
 
 export function SearchPanel() {
+  const enabled = useEnabledCategories();
+  const tabs = useMemo(
+    () => ALL_CATEGORIES.filter((c) => c.inSearch && enabled[c.id]),
+    [enabled],
+  );
   const [active, setActive] = useState<TabId>("flights");
+  useEffect(() => {
+    if (tabs.length > 0 && !tabs.some((t) => t.id === active)) {
+      setActive(tabs[0].id);
+    }
+  }, [tabs, active]);
+
+  if (tabs.length === 0) {
+    return (
+      <div className="mx-auto w-full max-w-5xl rounded-3xl bg-card/95 p-8 text-center shadow-glow ring-1 ring-border/60 backdrop-blur-xl">
+        <p className="text-sm text-muted-foreground">
+          Сейчас нет активных категорий. Включите их в админ-панели.
+        </p>
+      </div>
+    );
+  }
+
   const targetPath = active === "flights" ? "/flights" : "/hotels";
   const SubmitButton = (
     <Button asChild size="lg" className="h-auto self-stretch gap-2 rounded-xl px-7 text-base font-semibold">
