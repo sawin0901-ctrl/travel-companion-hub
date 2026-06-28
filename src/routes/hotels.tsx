@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { MapPin, Filter, Star, Heart, Wifi, UtensilsCrossed, Waves, ParkingCircle, X } from "lucide-react";
+import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetHeader } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -100,19 +101,49 @@ function HotelsPage() {
         </div>
       </div>
 
-      <div className="container mx-auto grid gap-6 px-4 py-8 md:grid-cols-[280px_1fr] md:px-6">
-        <HotelFilters
-          priceMax={priceMax}
-          setPriceMax={setPriceMax}
-          minStars={minStars}
-          setMinStars={setMinStars}
-          minRating={minRating}
-          setMinRating={setMinRating}
-          types={types}
-          setTypes={setTypes}
-          amenities={amenities}
-          setAmenities={setAmenities}
-        />
+      <div className="container mx-auto grid gap-6 px-4 py-6 md:grid-cols-[280px_1fr] md:px-6 md:py-8">
+        <div className="hidden md:block">
+          <HotelFilters
+            priceMax={priceMax}
+            setPriceMax={setPriceMax}
+            minStars={minStars}
+            setMinStars={setMinStars}
+            minRating={minRating}
+            setMinRating={setMinRating}
+            types={types}
+            setTypes={setTypes}
+            amenities={amenities}
+            setAmenities={setAmenities}
+          />
+        </div>
+        <div className="md:hidden">
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="outline" className="w-full gap-2">
+                <Filter className="h-4 w-4" /> Фильтры
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="left" className="w-[88vw] max-w-sm overflow-y-auto">
+              <SheetHeader>
+                <SheetTitle>Фильтры</SheetTitle>
+              </SheetHeader>
+              <div className="mt-4">
+                <HotelFilters
+                  priceMax={priceMax}
+                  setPriceMax={setPriceMax}
+                  minStars={minStars}
+                  setMinStars={setMinStars}
+                  minRating={minRating}
+                  setMinRating={setMinRating}
+                  types={types}
+                  setTypes={setTypes}
+                  amenities={amenities}
+                  setAmenities={setAmenities}
+                />
+              </div>
+            </SheetContent>
+          </Sheet>
+        </div>
 
         <div>
           <ResultsToolbar
@@ -253,8 +284,8 @@ function HotelFilters(props: {
 function HotelCard({ h }: { h: Hotel }) {
   const [fav, setFav] = useState(false);
   return (
-    <article className="group grid gap-0 overflow-hidden rounded-2xl border border-border bg-card transition-all hover:-translate-y-0.5 hover:border-ocean/30 hover:shadow-soft md:grid-cols-[280px_1fr]">
-      <div className="relative aspect-[4/3] md:aspect-auto">
+    <article className="group grid gap-0 overflow-hidden rounded-2xl border border-border bg-card transition-all hover:-translate-y-0.5 hover:border-ocean/30 hover:shadow-soft md:grid-cols-[260px_1fr] lg:grid-cols-[300px_1fr]">
+      <div className="relative aspect-[16/10] sm:aspect-[4/3] md:aspect-auto">
         <img src={h.image} alt={h.name} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
         {h.badge && (
           <span className="absolute left-3 top-3 rounded-full bg-coral px-2.5 py-1 text-[11px] font-bold text-coral-foreground">
