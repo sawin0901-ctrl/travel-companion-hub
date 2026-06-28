@@ -9,7 +9,7 @@ import {
   Categories,
   PopularCountries,
   Reviews,
-  CtaBanner,
+  // CtaBanner, // отключён по запросу
 } from "@/components/site/Sections";
 
 export const Route = createFileRoute("/")({
@@ -46,7 +46,7 @@ function Index() {
         <HotDeals />
         <PopularCountries />
         <Reviews />
-        <CtaBanner />
+        {/* <CtaBanner /> промо-блок WANDER10 отключён */}
       </main>
       <SiteFooter />
     </div>
