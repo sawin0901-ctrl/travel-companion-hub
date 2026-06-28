@@ -63,7 +63,11 @@ export function SearchPanel() {
 
   const targetPath = active === "flights" ? "/flights" : "/hotels";
   const SubmitButton = (
-    <Button asChild size="lg" className="h-auto self-stretch gap-2 rounded-xl px-7 text-base font-semibold">
+    <Button
+      asChild
+      size="lg"
+      className="col-span-full h-12 w-full gap-2 rounded-xl px-7 text-base font-semibold md:col-auto md:h-auto md:w-auto md:self-stretch"
+    >
       <Link to={targetPath}>
         <Search className="h-4 w-4" /> Найти
       </Link>
@@ -72,7 +76,7 @@ export function SearchPanel() {
 
   return (
     <div className="mx-auto w-full max-w-5xl rounded-3xl bg-card/95 p-2 shadow-glow ring-1 ring-border/60 backdrop-blur-xl">
-      <div className="flex flex-wrap gap-1 rounded-2xl bg-muted/40 p-1.5">
+      <div className="-mx-0 flex gap-1 overflow-x-auto rounded-2xl bg-muted/40 p-1.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:flex-wrap md:overflow-visible">
         {tabs.map((t) => {
           const Icon = t.icon;
           const isActive = active === t.id;
@@ -81,7 +85,7 @@ export function SearchPanel() {
               key={t.id}
               onClick={() => setActive(t.id)}
               className={cn(
-                "flex flex-1 min-w-[110px] items-center justify-center gap-2 rounded-xl px-3 py-2.5 text-sm font-medium transition-all",
+                "flex shrink-0 items-center justify-center gap-2 rounded-xl px-3 py-2.5 text-sm font-medium transition-all md:flex-1 md:shrink",
                 isActive
                   ? "bg-card text-foreground shadow-soft"
                   : "text-muted-foreground hover:text-foreground",
