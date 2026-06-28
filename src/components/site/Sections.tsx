@@ -19,16 +19,16 @@ const destinations = [
 
 export function PopularDestinations() {
   return (
-    <section id="oteli" className="container mx-auto px-4 py-20 md:px-6 md:py-28">
-      <div className="flex items-end justify-between gap-6">
+    <section id="oteli" className="container mx-auto px-4 py-14 md:px-6 md:py-28">
+      <div className="flex flex-wrap items-end justify-between gap-4 md:gap-6">
         <div className="max-w-2xl">
           <span className="inline-flex items-center gap-1.5 rounded-full bg-accent px-3 py-1 text-xs font-semibold text-accent-foreground">
             <Sparkles className="h-3.5 w-3.5" /> Лучшее этим летом
           </span>
-          <h2 className="mt-4 text-balance text-4xl font-bold md:text-5xl">
+          <h2 className="mt-3 text-balance text-3xl font-bold sm:text-4xl md:text-5xl">
             Популярные направления
           </h2>
-          <p className="mt-3 text-muted-foreground">
+          <p className="mt-3 text-sm text-muted-foreground sm:text-base">
             Тысячи путешественников выбирают эти места прямо сейчас. Цены обновляются каждые 10 минут.
           </p>
         </div>
@@ -82,17 +82,17 @@ const hotDeals = [
 
 export function HotDeals() {
   return (
-    <section id="aviabilety" className="bg-card py-20 md:py-28">
+    <section id="aviabilety" className="bg-card py-14 md:py-28">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="flex flex-wrap items-end justify-between gap-6">
+        <div className="flex flex-wrap items-end justify-between gap-4 md:gap-6">
           <div className="max-w-2xl">
             <span className="inline-flex items-center gap-1.5 rounded-full bg-coral/10 px-3 py-1 text-xs font-semibold text-coral">
               <Flame className="h-3.5 w-3.5" /> Горящие предложения
             </span>
-            <h2 className="mt-4 text-balance text-4xl font-bold md:text-5xl">
+            <h2 className="mt-3 text-balance text-3xl font-bold sm:text-4xl md:text-5xl">
               Авиабилеты <span className="text-gradient-ocean">по лучшей цене</span>
             </h2>
-            <p className="mt-3 text-muted-foreground">
+            <p className="mt-3 text-sm text-muted-foreground sm:text-base">
               Алгоритм отслеживает падение цен 24/7. Бронируйте, пока другие ищут.
             </p>
           </div>
@@ -134,12 +134,12 @@ export function Categories() {
   if (categories.length === 0) return null;
 
   return (
-    <section id="zhile" className="container mx-auto px-4 py-20 md:px-6 md:py-28">
+    <section id="zhile" className="container mx-auto px-4 py-14 md:px-6 md:py-28">
       <div className="max-w-2xl">
-        <h2 className="text-balance text-4xl font-bold md:text-5xl">
+        <h2 className="text-balance text-3xl font-bold sm:text-4xl md:text-5xl">
           Всё для путешествия в одном месте
         </h2>
-        <p className="mt-3 text-muted-foreground">
+        <p className="mt-3 text-sm text-muted-foreground sm:text-base">
           Сравнивайте цены и бронируйте у проверенных партнёров — Booking, Aviasales, Kiwi, Rentalcars и других.
         </p>
       </div>
@@ -186,11 +186,11 @@ const countries = [
 
 export function PopularCountries() {
   return (
-    <section id="tury" className="bg-card py-20 md:py-28">
+    <section id="tury" className="bg-card py-14 md:py-28">
       <div className="container mx-auto px-4 md:px-6">
         <div className="max-w-2xl">
-          <h2 className="text-balance text-4xl font-bold md:text-5xl">Популярные страны</h2>
-          <p className="mt-3 text-muted-foreground">
+          <h2 className="text-balance text-3xl font-bold sm:text-4xl md:text-5xl">Популярные страны</h2>
+          <p className="mt-3 text-sm text-muted-foreground sm:text-base">
             Куда летят россияне прямо сейчас — статистика обновляется ежедневно.
           </p>
         </div>
@@ -237,12 +237,12 @@ const reviews = [
 
 export function Reviews() {
   return (
-    <section id="blog" className="container mx-auto px-4 py-20 md:px-6 md:py-28">
+    <section id="blog" className="container mx-auto px-4 py-14 md:px-6 md:py-28">
       <div className="max-w-2xl">
         <span className="inline-flex items-center gap-1.5 rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">
           <Heart className="h-3.5 w-3.5 text-coral" /> 4.9 из 5 · 28 400 отзывов
         </span>
-        <h2 className="mt-4 text-balance text-4xl font-bold md:text-5xl">
+        <h2 className="mt-3 text-balance text-3xl font-bold sm:text-4xl md:text-5xl">
           Что говорят путешественники
         </h2>
       </div>
@@ -276,19 +276,19 @@ export function Reviews() {
 
 export function CtaBanner() {
   return (
-    <section id="avto" className="container mx-auto px-4 pb-24 md:px-6">
-      <div className="relative overflow-hidden rounded-[2rem] gradient-ocean px-8 py-14 text-ocean-foreground md:px-16 md:py-20">
+    <section id="avto" className="container mx-auto px-4 pb-16 md:px-6 md:pb-24">
+      <div className="relative overflow-hidden rounded-[2rem] gradient-ocean px-6 py-10 text-ocean-foreground sm:px-8 sm:py-14 md:px-16 md:py-20">
         <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-coral/30 blur-3xl" />
         <div className="absolute -bottom-32 -left-10 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
-        <div className="relative grid items-center gap-10 md:grid-cols-[1.4fr_1fr]">
+        <div className="relative grid items-center gap-8 md:grid-cols-[1.4fr_1fr] md:gap-10">
           <div>
             <span className="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 text-xs font-semibold backdrop-blur">
               <Sparkles className="h-3.5 w-3.5" /> Промокод WANDER10
             </span>
-            <h2 className="mt-4 text-balance font-display text-4xl font-bold leading-tight md:text-5xl">
+            <h2 className="mt-3 text-balance font-display text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">
               −10% на первое бронирование жилья
             </h2>
-            <p className="mt-3 max-w-xl text-base text-white/80">
+            <p className="mt-3 max-w-xl text-sm text-white/80 sm:text-base">
               Зарегистрируйтесь, чтобы сохранять избранное, следить за ценами и получать персональные подборки.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
