@@ -144,23 +144,15 @@ export function Categories() {
         </p>
       </div>
 
-      <div
-        className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:gap-5"
-        style={{
-          gridTemplateColumns: undefined,
-        }}
-      >
-        {/* On lg+, fit all enabled categories on a single row (no empty cells) */}
-        <style>{`
-          @media (min-width: 1024px) {
-            .jetsale-cats { grid-template-columns: repeat(${Math.min(
-              Math.max(categories.length, 1),
-              8,
-            )}, minmax(0, 1fr)); }
-          }
-        `}</style>
-      </div>
-      <div className="jetsale-cats mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:gap-5">
+      <style>{`
+        @media (min-width: 1024px) {
+          .jetsale-cats { grid-template-columns: repeat(${Math.min(
+            Math.max(categories.length, 1),
+            8,
+          )}, minmax(0, 1fr)) !important; }
+        }
+      `}</style>
+      <div className="jetsale-cats mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:gap-5">
         {categories.map((c) => {
           const Icon = c.icon;
           return (
