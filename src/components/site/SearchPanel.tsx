@@ -1,24 +1,11 @@
-import { useEffect, useRef, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Search, Calendar, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ALL_CATEGORIES, useEnabledCategories, type CategoryId } from "@/lib/categories";
 import { CityInput } from "./CityInput";
+import { FlightSearch } from "./FlightSearch";
 import { hotellookUrl, carsUrl, transferUrl, insuranceUrl } from "@/lib/affiliate";
-
-function AviasalesWidget() {
-  const ref = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    if (!ref.current) return;
-    const script = document.createElement("script");
-    script.src =
-      "https://tpwgts.com/content?currency=rub&trs=544190&shmarker=372499&show_hotels=false&powered_by=false&locale=ru&searchUrl=www.aviasales.ru%2Fsearch&primary_override=%2332a8dd&color_button=%2332a8dd&color_icons=%2332a8dd&dark=%23262626&light=%23FFFFFF&secondary=%23FFFFFF&special=%23C4C4C4&color_focused=%2332a8dd&border_radius=0&no_labels=true&plain=true&promo_id=7879&campaign_id=100";
-    script.async = true;
-    ref.current.appendChild(script);
-    return () => { script.remove(); };
-  }, []);
-  return <div ref={ref} />;
-}
 
 function DateField({ label, value, onChange, className }: { label: string; value: string; onChange: (v: string) => void; className?: string }) {
   return (
@@ -219,7 +206,7 @@ export function SearchPanel() {
       </div>
 
       <div className="p-4 md:p-5">
-        {active === "flights" && <AviasalesWidget />}
+        {active === "flights" && <FlightSearch />}
         {active === "hotels" && <HotelForm />}
         {active === "stays" && <StaysForm />}
         {active === "cars" && <CarsForm />}
