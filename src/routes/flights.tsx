@@ -183,17 +183,17 @@ export function ResultsToolbar({
           { v: "distance", l: "По удалённости от центра" },
         ];
   return (
-    <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-border bg-card p-3">
+    <div className="flex flex-col items-stretch gap-3 rounded-2xl border border-border bg-card p-3 sm:flex-row sm:items-center sm:justify-between">
       <p className="text-sm font-medium">
         Найдено <span className="font-bold">{count}</span> {kind}
       </p>
-      <div className="flex items-center gap-1.5 rounded-xl bg-muted/60 p-1">
+      <div className="-mx-1 flex items-center gap-1.5 overflow-x-auto rounded-xl bg-muted/60 p-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {options.map((o) => (
           <button
             key={o.v}
             onClick={() => setSort(o.v as never)}
             className={cn(
-              "rounded-lg px-3 py-1.5 text-xs font-medium transition-all",
+              "shrink-0 rounded-lg px-3 py-1.5 text-xs font-medium whitespace-nowrap transition-all",
               sort === o.v
                 ? "bg-card text-foreground shadow-soft"
                 : "text-muted-foreground hover:text-foreground",
