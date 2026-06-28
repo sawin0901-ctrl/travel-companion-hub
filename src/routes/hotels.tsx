@@ -347,7 +347,15 @@ function HotelCard({ h }: { h: Hotel }) {
               <div className="text-xs text-muted-foreground">за ночь</div>
             </div>
           </div>
-          <Button>Забронировать</Button>
+          <Button asChild>
+            <a
+              href={`https://hotellook.com/search/rooms?destination=${encodeURIComponent(h.district)}&marker=372499`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Забронировать
+            </a>
+          </Button>
         </div>
       </div>
     </article>

@@ -358,8 +358,14 @@ function FlightCard({ f }: { f: Flight }) {
           <div className="font-display text-2xl font-bold">{f.price.toLocaleString("ru")} ₽</div>
           <div className="text-xs text-muted-foreground">за 1 пассажира</div>
         </div>
-        <Button className="gap-1.5">
-          К покупке <ChevronDown className="h-4 w-4 -rotate-90" />
+        <Button asChild className="gap-1.5">
+          <a
+            href={`https://www.aviasales.ru/search/${f.from}${f.to}1?marker=372499`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            К покупке <ChevronDown className="h-4 w-4 -rotate-90" />
+          </a>
         </Button>
       </div>
     </article>

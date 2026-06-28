@@ -1,56 +1,175 @@
 import { useEffect, useRef, useMemo, useState } from "react";
-import { Plane, Hotel, Home, Car, MapPin, ShieldCheck, Search, Calendar, Users } from "lucide-react";
-import { Link } from "@tanstack/react-router";
+import { Search, Calendar, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { ALL_CATEGORIES, useEnabledCategories, type CategoryId } from "@/lib/categories";
+import { CityInput } from "./CityInput";
+import { hotellookUrl, carsUrl, transferUrl, insuranceUrl } from "@/lib/affiliate";
 
 function AviasalesWidget() {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!ref.current) return;
     const script = document.createElement("script");
-    script.src = "https://tpwgts.com/content?currency=rub&trs=544190&shmarker=372499&show_hotels=false&powered_by=false&locale=ru&searchUrl=www.aviasales.ru%2Fsearch&primary_override=%2332a8dd&color_button=%2332a8dd&color_icons=%2332a8dd&dark=%23262626&light=%23FFFFFF&secondary=%23FFFFFF&special=%23C4C4C4&color_focused=%2332a8dd&border_radius=0&no_labels=true&plain=true&promo_id=7879&campaign_id=100";
+    script.src =
+      "https://tpwgts.com/content?currency=rub&trs=544190&shmarker=372499&show_hotels=false&powered_by=false&locale=ru&searchUrl=www.aviasales.ru%2Fsearch&primary_override=%2332a8dd&color_button=%2332a8dd&color_icons=%2332a8dd&dark=%23262626&light=%23FFFFFF&secondary=%23FFFFFF&special=%23C4C4C4&color_focused=%2332a8dd&border_radius=0&no_labels=true&plain=true&promo_id=7879&campaign_id=100";
     script.async = true;
-    script.charset = "utf-8";
     ref.current.appendChild(script);
     return () => { script.remove(); };
   }, []);
   return <div ref={ref} />;
 }
 
-type TabId = CategoryId;
-
-function Field({
-  label,
-  icon: Icon,
-  placeholder,
-  className,
-}: {
-  label: string;
-  icon: typeof Plane;
-  placeholder: string;
-  className?: string;
-}) {
+function DateField({ label, value, onChange, className }: { label: string; value: string; onChange: (v: string) => void; className?: string }) {
   return (
-    <label
-      className={cn(
-        "group flex flex-col gap-1 rounded-xl border border-border bg-background/60 px-4 py-3 transition-colors focus-within:border-ocean focus-within:bg-background",
-        className,
-      )}
-    >
+    <label className={cn("group flex flex-col gap-1 rounded-xl border border-border bg-background/60 px-4 py-3 transition-colors focus-within:border-ocean focus-within:bg-background", className)}>
       <span className="flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
-        <Icon className="h-3.5 w-3.5" />
+        <Calendar className="h-3.5 w-3.5" />
         {label}
       </span>
-      <Input
-        placeholder={placeholder}
-        className="h-7 border-0 bg-transparent p-0 text-base font-medium shadow-none focus-visible:ring-0 focus-visible:ring-offset-0 dark:bg-transparent"
+      <input
+        type="date"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="h-7 border-0 bg-transparent p-0 text-base font-medium outline-none"
       />
     </label>
   );
 }
+
+function NumberField({ label, icon: Icon, placeholder, value, onChange, className }: { label: string; icon: typeof Users; placeholder: string; value: string; onChange: (v: string) => void; className?: string }) {
+  return (
+    <label className={cn("group flex flex-col gap-1 rounded-xl border border-border bg-background/60 px-4 py-3 transition-colors focus-within:border-ocean focus-within:bg-background", className)}>
+      <span className="flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
+        <Icon className="h-3.5 w-3.5" />
+        {label}
+      </span>
+      <input
+        type="number"
+        min="1"
+        max="9"
+        placeholder={placeholder}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="h-7 w-full border-0 bg-transparent p-0 text-base font-medium outline-none placeholder:text-muted-foreground/60"
+      />
+    </label>
+  );
+}
+
+function openTab(url: string) {
+  window.open(url, "_blank", "noopener,noreferrer");
+}
+
+function HotelForm() {
+  const [city, setCity] = useState("");
+  const [checkIn, setCheckIn] = useState("");
+  const [checkOut, setCheckOut] = useState("");
+  const [guests, setGuests] = useState("2");
+  return (
+    <div className="grid gap-2 md:grid-cols-[2fr_1fr_1fr_auto_auto]">
+      <CityInput label="Направление" placeholder="Дубай, Стамбул..." value={city} onChange={setCity} />
+      <DateField label="Заезд" value={checkIn} onChange={setCheckIn} />
+      <DateField label="Выезд" value={checkOut} onChange={setCheckOut} />
+      <NumberField label="Гости" icon={Users} placeholder="2" value={guests} onChange={setGuests} />
+      <Button
+        size="lg"
+        className="h-auto self-stretch gap-2 rounded-xl px-7 text-base font-semibold"
+        onClick={() => openTab(hotellookUrl(city || "Москва", checkIn, checkOut, guests || "2"))}
+      >
+        <Search className="h-4 w-4" /> Найти
+      </Button>
+    </div>
+  );
+}
+
+function StaysForm() {
+  const [city, setCity] = useState("");
+  const [checkIn, setCheckIn] = useState("");
+  const [checkOut, setCheckOut] = useState("");
+  const [guests, setGuests] = useState("2");
+  return (
+    <div className="grid gap-2 md:grid-cols-[2fr_1fr_1fr_auto_auto]">
+      <CityInput label="Город или район" placeholder="Тбилиси, Старый город..." value={city} onChange={setCity} />
+      <DateField label="Заезд" value={checkIn} onChange={setCheckIn} />
+      <DateField label="Выезд" value={checkOut} onChange={setCheckOut} />
+      <NumberField label="Гости" icon={Users} placeholder="2" value={guests} onChange={setGuests} />
+      <Button
+        size="lg"
+        className="h-auto self-stretch gap-2 rounded-xl px-7 text-base font-semibold"
+        onClick={() => openTab(hotellookUrl(city || "Тбилиси", checkIn, checkOut, guests || "2"))}
+      >
+        <Search className="h-4 w-4" /> Найти
+      </Button>
+    </div>
+  );
+}
+
+function CarsForm() {
+  const [pickup, setPickup] = useState("");
+  const [pickupDate, setPickupDate] = useState("");
+  const [returnDate, setReturnDate] = useState("");
+  return (
+    <div className="grid gap-2 md:grid-cols-[2fr_1fr_1fr_auto]">
+      <CityInput label="Место получения" placeholder="Аэропорт Антальи..." value={pickup} onChange={setPickup} />
+      <DateField label="Получение" value={pickupDate} onChange={setPickupDate} />
+      <DateField label="Возврат" value={returnDate} onChange={setReturnDate} />
+      <Button
+        size="lg"
+        className="h-auto self-stretch gap-2 rounded-xl px-7 text-base font-semibold"
+        onClick={() => openTab(carsUrl(pickup || "Antalya Airport", pickupDate, returnDate))}
+      >
+        <Search className="h-4 w-4" /> Найти
+      </Button>
+    </div>
+  );
+}
+
+function TransferForm() {
+  const [from, setFrom] = useState("");
+  const [to, setTo] = useState("");
+  const [date, setDate] = useState("");
+  const [passengers, setPassengers] = useState("2");
+  return (
+    <div className="grid gap-2 md:grid-cols-[1fr_1fr_1fr_auto_auto]">
+      <CityInput label="Откуда" placeholder="Аэропорт DXB" value={from} onChange={setFrom} />
+      <CityInput label="Куда" placeholder="Отель Marina" value={to} onChange={setTo} />
+      <DateField label="Дата" value={date} onChange={setDate} />
+      <NumberField label="Пассажиры" icon={Users} placeholder="2" value={passengers} onChange={setPassengers} />
+      <Button
+        size="lg"
+        className="h-auto self-stretch gap-2 rounded-xl px-7 text-base font-semibold"
+        onClick={() => openTab(transferUrl(from, to, date, passengers || "2"))}
+      >
+        <Search className="h-4 w-4" /> Найти
+      </Button>
+    </div>
+  );
+}
+
+function InsuranceForm() {
+  const [country, setCountry] = useState("");
+  const [dateFrom, setDateFrom] = useState("");
+  const [dateTo, setDateTo] = useState("");
+  const [tourists, setTourists] = useState("1");
+  return (
+    <div className="grid gap-2 md:grid-cols-[2fr_1fr_1fr_auto_auto]">
+      <CityInput label="Страна поездки" placeholder="Турция, Шенген..." value={country} onChange={setCountry} />
+      <DateField label="С" value={dateFrom} onChange={setDateFrom} />
+      <DateField label="По" value={dateTo} onChange={setDateTo} />
+      <NumberField label="Туристы" icon={Users} placeholder="1" value={tourists} onChange={setTourists} />
+      <Button
+        size="lg"
+        className="h-auto self-stretch gap-2 rounded-xl px-7 text-base font-semibold"
+        onClick={() => openTab(insuranceUrl(country || "Turkey", dateFrom, dateTo, tourists || "1"))}
+      >
+        <Search className="h-4 w-4" /> Найти
+      </Button>
+    </div>
+  );
+}
+
+type TabId = CategoryId;
 
 export function SearchPanel() {
   const enabled = useEnabledCategories();
@@ -74,19 +193,6 @@ export function SearchPanel() {
       </div>
     );
   }
-
-  const targetPath = active === "flights" ? "/flights" : "/hotels";
-  const SubmitButton = (
-    <Button
-      asChild
-      size="lg"
-      className="col-span-full h-12 w-full gap-2 rounded-xl px-7 text-base font-semibold md:col-auto md:h-auto md:w-auto md:self-stretch"
-    >
-      <Link to={targetPath}>
-        <Search className="h-4 w-4" /> Найти
-      </Link>
-    </Button>
-  );
 
   return (
     <div className="mx-auto w-full max-w-5xl rounded-3xl bg-card/95 p-2 shadow-glow ring-1 ring-border/60 backdrop-blur-xl">
@@ -113,60 +219,18 @@ export function SearchPanel() {
       </div>
 
       <div className="p-4 md:p-5">
-        {active === "flights" && (
-          <AviasalesWidget />
-        )}
-        {active === "hotels" && (
-          <div className="grid gap-2 md:grid-cols-[2fr_1fr_1fr_1fr_auto]">
-            <Field label="Направление" icon={MapPin} placeholder="Дубай, ОАЭ" />
-            <Field label="Заезд" icon={Calendar} placeholder="20 авг" />
-            <Field label="Выезд" icon={Calendar} placeholder="27 авг" />
-            <Field label="Гости" icon={Users} placeholder="2 гостя, 1 номер" />
-            {SubmitButton}
-          </div>
-        )}
-        {active === "stays" && (
-          <div className="grid gap-2 md:grid-cols-[2fr_1fr_1fr_1fr_auto]">
-            <Field label="Город или район" icon={Home} placeholder="Тбилиси, Старый город" />
-            <Field label="Заезд" icon={Calendar} placeholder="1 сен" />
-            <Field label="Выезд" icon={Calendar} placeholder="8 сен" />
-            <Field label="Гости" icon={Users} placeholder="3 гостя" />
-            {SubmitButton}
-          </div>
-        )}
-        {active === "cars" && (
-          <div className="grid gap-2 md:grid-cols-[2fr_1fr_1fr_auto]">
-            <Field label="Место получения" icon={Car} placeholder="Аэропорт Антальи" />
-            <Field label="Получение" icon={Calendar} placeholder="5 авг, 12:00" />
-            <Field label="Возврат" icon={Calendar} placeholder="12 авг, 12:00" />
-            {SubmitButton}
-          </div>
-        )}
-        {active === "transfer" && (
-          <div className="grid gap-2 md:grid-cols-[1fr_1fr_1fr_1fr_auto]">
-            <Field label="Откуда" icon={MapPin} placeholder="Аэропорт DXB" />
-            <Field label="Куда" icon={MapPin} placeholder="Отель Marina" />
-            <Field label="Дата" icon={Calendar} placeholder="20 авг" />
-            <Field label="Пассажиры" icon={Users} placeholder="2 пассажира" />
-            {SubmitButton}
-          </div>
-        )}
-        {active === "insurance" && (
-          <div className="grid gap-2 md:grid-cols-[2fr_1fr_1fr_1fr_auto]">
-            <Field label="Страна поездки" icon={ShieldCheck} placeholder="Шенген" />
-            <Field label="С" icon={Calendar} placeholder="1 сен" />
-            <Field label="По" icon={Calendar} placeholder="14 сен" />
-            <Field label="Туристы" icon={Users} placeholder="1 взрослый" />
-            {SubmitButton}
-          </div>
-        )}
+        {active === "flights" && <AviasalesWidget />}
+        {active === "hotels" && <HotelForm />}
+        {active === "stays" && <StaysForm />}
+        {active === "cars" && <CarsForm />}
+        {active === "transfer" && <TransferForm />}
+        {active === "insurance" && <InsuranceForm />}
 
-        <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 px-1 text-xs text-muted-foreground">
-          <label className="flex items-center gap-2"><input type="checkbox" className="accent-ocean" /> Только прямые</label>
-          <label className="flex items-center gap-2"><input type="checkbox" className="accent-ocean" defaultChecked /> С багажом</label>
-          <label className="flex items-center gap-2"><input type="checkbox" className="accent-ocean" /> Гибкие даты ±3 дня</label>
-          <span className="ml-auto text-ocean">Сравниваем 850+ партнёров</span>
-        </div>
+        {active === "flights" && (
+          <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 px-1 text-xs text-muted-foreground">
+            <span className="ml-auto text-ocean">Сравниваем 850+ партнёров</span>
+          </div>
+        )}
       </div>
     </div>
   );
