@@ -11,9 +11,9 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/flights")({
   head: () => ({
     meta: [
-      { title: "Авиабилеты Москва → Стамбул — Wanderly" },
+      { title: "Авиабилеты Москва → Стамбул — JetSale" },
       { name: "description", content: "Сравните цены на авиабилеты от ведущих авиакомпаний и партнёров. Прямые рейсы, с пересадками, гибкие даты." },
-      { property: "og:title", content: "Авиабилеты — Wanderly" },
+      { property: "og:title", content: "Авиабилеты — JetSale" },
       { property: "og:url", content: "/flights" },
     ],
     links: [{ rel: "canonical", href: "/flights" }],

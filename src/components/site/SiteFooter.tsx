@@ -24,7 +24,7 @@ export function SiteFooter() {
             <span className="grid h-9 w-9 place-items-center rounded-xl gradient-ocean text-ocean-foreground">
               <Plane className="h-4 w-4 -rotate-45" />
             </span>
-            <span className="font-display text-lg font-semibold">Wanderly</span>
+            <span className="font-display text-lg font-semibold">JetSale</span>
           </div>
           <p className="mt-4 max-w-sm text-sm text-muted-foreground">
             Современный партнёрский сервис путешествий. Сравниваем предложения 850+ партнёров и находим лучшую цену на авиабилеты, жильё, авто и страховки.
@@ -59,7 +59,7 @@ export function SiteFooter() {
       <div className="border-t border-border">
         <div className="container mx-auto grid gap-2 px-4 py-6 text-xs text-muted-foreground md:px-6">
           <p>
-            ООО «Вандерли», ОГРН 0000000000000, ИНН 0000000000. Сервер расположен на территории Российской Федерации. Цены указаны в российских рублях (₽).
+            ООО «Джетсейл», ОГРН 0000000000000, ИНН 0000000000. Сервер расположен на территории Российской Федерации. Цены указаны в российских рублях (₽).
           </p>
           <p>
             Обработка персональных данных осуществляется в соответствии с Федеральным законом № 152-ФЗ «О персональных данных». Используя сайт, вы соглашаетесь с{" "}
@@ -67,7 +67,7 @@ export function SiteFooter() {
             <a href="#" className="underline hover:text-foreground">Согласием на обработку ПДн</a>.
           </p>
           <div className="flex flex-col items-start justify-between gap-2 pt-2 md:flex-row md:items-center">
-            <p>© 2026 Wanderly. Сервис работает по партнёрской (affiliate) модели.</p>
+            <p>© 2026 JetSale. Сервис работает по партнёрской (affiliate) модели.</p>
             <p>Время по МСК (UTC+3) · Сделано с любовью к путешествиям ✈️</p>
           </div>
         </div>

@@ -1,8 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 
-// TODO: заменить на реальный домен (например, https://wanderly.ru)
-const BASE_URL = "";
+const BASE_URL = "https://jetsale.online";
 
 interface SitemapEntry {
   path: string;

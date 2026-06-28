@@ -15,13 +15,13 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Wanderly — авиабилеты, отели и жильё по лучшей цене" },
+      { title: "JetSale — авиабилеты, отели и жильё по лучшей цене" },
       {
         name: "description",
         content:
           "Сравниваем предложения 850+ партнёров: авиабилеты, отели, квартиры, аренда авто, трансферы и страховки. Бронируйте путешествие в одном месте.",
       },
-      { property: "og:title", content: "Wanderly — путешествия по лучшей цене" },
+      { property: "og:title", content: "JetSale — путешествия по лучшей цене" },
       {
         property: "og:description",
         content:
