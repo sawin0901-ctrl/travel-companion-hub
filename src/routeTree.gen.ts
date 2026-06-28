@@ -19,6 +19,7 @@ import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as AviabiletyIndexRouteImport } from './routes/aviabilety.index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as OteliCountryRouteImport } from './routes/oteli.$country'
+import { Route as LegalTermsRouteImport } from './routes/legal.terms'
 import { Route as LegalPrivacyRouteImport } from './routes/legal.privacy'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as AviabiletyRouteRouteImport } from './routes/aviabilety.$route'
@@ -91,6 +92,11 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
 const OteliCountryRoute = OteliCountryRouteImport.update({
   id: '/oteli/$country',
   path: '/oteli/$country',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalTermsRoute = LegalTermsRouteImport.update({
+  id: '/legal/terms',
+  path: '/legal/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LegalPrivacyRoute = LegalPrivacyRouteImport.update({
@@ -238,6 +244,7 @@ export interface FileRoutesByFullPath {
   '/aviabilety/$route': typeof AviabiletyRouteRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/legal/privacy': typeof LegalPrivacyRoute
+  '/legal/terms': typeof LegalTermsRoute
   '/oteli/$country': typeof OteliCountryRoute
   '/admin/': typeof AdminIndexRoute
   '/aviabilety/': typeof AviabiletyIndexRoute
@@ -272,6 +279,7 @@ export interface FileRoutesByTo {
   '/aviabilety/$route': typeof AviabiletyRouteRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/legal/privacy': typeof LegalPrivacyRoute
+  '/legal/terms': typeof LegalTermsRoute
   '/oteli/$country': typeof OteliCountryRoute
   '/admin': typeof AdminIndexRoute
   '/aviabilety': typeof AviabiletyIndexRoute
@@ -308,6 +316,7 @@ export interface FileRoutesById {
   '/aviabilety/$route': typeof AviabiletyRouteRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/legal/privacy': typeof LegalPrivacyRoute
+  '/legal/terms': typeof LegalTermsRoute
   '/oteli/$country': typeof OteliCountryRoute
   '/admin/': typeof AdminIndexRoute
   '/aviabilety/': typeof AviabiletyIndexRoute
@@ -345,6 +354,7 @@ export interface FileRouteTypes {
     | '/aviabilety/$route'
     | '/blog/$slug'
     | '/legal/privacy'
+    | '/legal/terms'
     | '/oteli/$country'
     | '/admin/'
     | '/aviabilety/'
@@ -379,6 +389,7 @@ export interface FileRouteTypes {
     | '/aviabilety/$route'
     | '/blog/$slug'
     | '/legal/privacy'
+    | '/legal/terms'
     | '/oteli/$country'
     | '/admin'
     | '/aviabilety'
@@ -414,6 +425,7 @@ export interface FileRouteTypes {
     | '/aviabilety/$route'
     | '/blog/$slug'
     | '/legal/privacy'
+    | '/legal/terms'
     | '/oteli/$country'
     | '/admin/'
     | '/aviabilety/'
@@ -430,6 +442,7 @@ export interface RootRouteChildren {
   AviabiletyRouteRoute: typeof AviabiletyRouteRoute
   BlogSlugRoute: typeof BlogSlugRoute
   LegalPrivacyRoute: typeof LegalPrivacyRoute
+  LegalTermsRoute: typeof LegalTermsRoute
   OteliCountryRoute: typeof OteliCountryRoute
   AviabiletyIndexRoute: typeof AviabiletyIndexRoute
   BlogIndexRoute: typeof BlogIndexRoute
@@ -506,6 +519,13 @@ declare module '@tanstack/react-router' {
       path: '/oteli/$country'
       fullPath: '/oteli/$country'
       preLoaderRoute: typeof OteliCountryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal/terms': {
+      id: '/legal/terms'
+      path: '/legal/terms'
+      fullPath: '/legal/terms'
+      preLoaderRoute: typeof LegalTermsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/legal/privacy': {
@@ -731,6 +751,7 @@ const rootRouteChildren: RootRouteChildren = {
   AviabiletyRouteRoute: AviabiletyRouteRoute,
   BlogSlugRoute: BlogSlugRoute,
   LegalPrivacyRoute: LegalPrivacyRoute,
+  LegalTermsRoute: LegalTermsRoute,
   OteliCountryRoute: OteliCountryRoute,
   AviabiletyIndexRoute: AviabiletyIndexRoute,
   BlogIndexRoute: BlogIndexRoute,
