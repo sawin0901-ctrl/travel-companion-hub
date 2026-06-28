@@ -33,6 +33,7 @@ import { Route as AdminFaqRouteImport } from './routes/admin.faq'
 import { Route as AdminCategoriesRouteImport } from './routes/admin.categories'
 import { Route as AdminCacheRouteImport } from './routes/admin.cache'
 import { Route as AdminBannersRouteImport } from './routes/admin.banners'
+import { Route as AdminBackupsRouteImport } from './routes/admin.backups'
 import { Route as AdminAnalyticsRouteImport } from './routes/admin.analytics'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -155,6 +156,11 @@ const AdminBannersRoute = AdminBannersRouteImport.update({
   path: '/banners',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminBackupsRoute = AdminBackupsRouteImport.update({
+  id: '/backups',
+  path: '/backups',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminAnalyticsRoute = AdminAnalyticsRouteImport.update({
   id: '/analytics',
   path: '/analytics',
@@ -168,6 +174,7 @@ export interface FileRoutesByFullPath {
   '/hotels': typeof HotelsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/backups': typeof AdminBackupsRoute
   '/admin/banners': typeof AdminBannersRoute
   '/admin/cache': typeof AdminCacheRoute
   '/admin/categories': typeof AdminCategoriesRoute
@@ -194,6 +201,7 @@ export interface FileRoutesByTo {
   '/hotels': typeof HotelsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/backups': typeof AdminBackupsRoute
   '/admin/banners': typeof AdminBannersRoute
   '/admin/cache': typeof AdminCacheRoute
   '/admin/categories': typeof AdminCategoriesRoute
@@ -222,6 +230,7 @@ export interface FileRoutesById {
   '/hotels': typeof HotelsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/backups': typeof AdminBackupsRoute
   '/admin/banners': typeof AdminBannersRoute
   '/admin/cache': typeof AdminCacheRoute
   '/admin/categories': typeof AdminCategoriesRoute
@@ -251,6 +260,7 @@ export interface FileRouteTypes {
     | '/hotels'
     | '/sitemap.xml'
     | '/admin/analytics'
+    | '/admin/backups'
     | '/admin/banners'
     | '/admin/cache'
     | '/admin/categories'
@@ -277,6 +287,7 @@ export interface FileRouteTypes {
     | '/hotels'
     | '/sitemap.xml'
     | '/admin/analytics'
+    | '/admin/backups'
     | '/admin/banners'
     | '/admin/cache'
     | '/admin/categories'
@@ -304,6 +315,7 @@ export interface FileRouteTypes {
     | '/hotels'
     | '/sitemap.xml'
     | '/admin/analytics'
+    | '/admin/backups'
     | '/admin/banners'
     | '/admin/cache'
     | '/admin/categories'
@@ -503,6 +515,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminBannersRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/backups': {
+      id: '/admin/backups'
+      path: '/backups'
+      fullPath: '/admin/backups'
+      preLoaderRoute: typeof AdminBackupsRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/analytics': {
       id: '/admin/analytics'
       path: '/analytics'
@@ -515,6 +534,7 @@ declare module '@tanstack/react-router' {
 
 interface AdminRouteChildren {
   AdminAnalyticsRoute: typeof AdminAnalyticsRoute
+  AdminBackupsRoute: typeof AdminBackupsRoute
   AdminBannersRoute: typeof AdminBannersRoute
   AdminCacheRoute: typeof AdminCacheRoute
   AdminCategoriesRoute: typeof AdminCategoriesRoute
@@ -538,6 +558,7 @@ interface AdminRouteChildren {
 
 const AdminRouteChildren: AdminRouteChildren = {
   AdminAnalyticsRoute: AdminAnalyticsRoute,
+  AdminBackupsRoute: AdminBackupsRoute,
   AdminBannersRoute: AdminBannersRoute,
   AdminCacheRoute: AdminCacheRoute,
   AdminCategoriesRoute: AdminCategoriesRoute,
