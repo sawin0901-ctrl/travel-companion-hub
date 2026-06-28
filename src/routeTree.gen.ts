@@ -25,6 +25,7 @@ import { Route as AdminPromocodesRouteImport } from './routes/admin.promocodes'
 import { Route as AdminOrdersRouteImport } from './routes/admin.orders'
 import { Route as AdminMonitoringRouteImport } from './routes/admin.monitoring'
 import { Route as AdminLogsRouteImport } from './routes/admin.logs'
+import { Route as AdminHealthRouteImport } from './routes/admin.health'
 import { Route as AdminFlashRouteImport } from './routes/admin.flash'
 import { Route as AdminFaqRouteImport } from './routes/admin.faq'
 import { Route as AdminCategoriesRouteImport } from './routes/admin.categories'
@@ -111,6 +112,11 @@ const AdminLogsRoute = AdminLogsRouteImport.update({
   path: '/logs',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminHealthRoute = AdminHealthRouteImport.update({
+  id: '/health',
+  path: '/health',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminFlashRoute = AdminFlashRouteImport.update({
   id: '/flash',
   path: '/flash',
@@ -148,6 +154,7 @@ export interface FileRoutesByFullPath {
   '/admin/categories': typeof AdminCategoriesRoute
   '/admin/faq': typeof AdminFaqRoute
   '/admin/flash': typeof AdminFlashRoute
+  '/admin/health': typeof AdminHealthRoute
   '/admin/logs': typeof AdminLogsRoute
   '/admin/monitoring': typeof AdminMonitoringRoute
   '/admin/orders': typeof AdminOrdersRoute
@@ -170,6 +177,7 @@ export interface FileRoutesByTo {
   '/admin/categories': typeof AdminCategoriesRoute
   '/admin/faq': typeof AdminFaqRoute
   '/admin/flash': typeof AdminFlashRoute
+  '/admin/health': typeof AdminHealthRoute
   '/admin/logs': typeof AdminLogsRoute
   '/admin/monitoring': typeof AdminMonitoringRoute
   '/admin/orders': typeof AdminOrdersRoute
@@ -194,6 +202,7 @@ export interface FileRoutesById {
   '/admin/categories': typeof AdminCategoriesRoute
   '/admin/faq': typeof AdminFaqRoute
   '/admin/flash': typeof AdminFlashRoute
+  '/admin/health': typeof AdminHealthRoute
   '/admin/logs': typeof AdminLogsRoute
   '/admin/monitoring': typeof AdminMonitoringRoute
   '/admin/orders': typeof AdminOrdersRoute
@@ -219,6 +228,7 @@ export interface FileRouteTypes {
     | '/admin/categories'
     | '/admin/faq'
     | '/admin/flash'
+    | '/admin/health'
     | '/admin/logs'
     | '/admin/monitoring'
     | '/admin/orders'
@@ -241,6 +251,7 @@ export interface FileRouteTypes {
     | '/admin/categories'
     | '/admin/faq'
     | '/admin/flash'
+    | '/admin/health'
     | '/admin/logs'
     | '/admin/monitoring'
     | '/admin/orders'
@@ -264,6 +275,7 @@ export interface FileRouteTypes {
     | '/admin/categories'
     | '/admin/faq'
     | '/admin/flash'
+    | '/admin/health'
     | '/admin/logs'
     | '/admin/monitoring'
     | '/admin/orders'
@@ -399,6 +411,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminLogsRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/health': {
+      id: '/admin/health'
+      path: '/health'
+      fullPath: '/admin/health'
+      preLoaderRoute: typeof AdminHealthRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/flash': {
       id: '/admin/flash'
       path: '/flash'
@@ -443,6 +462,7 @@ interface AdminRouteChildren {
   AdminCategoriesRoute: typeof AdminCategoriesRoute
   AdminFaqRoute: typeof AdminFaqRoute
   AdminFlashRoute: typeof AdminFlashRoute
+  AdminHealthRoute: typeof AdminHealthRoute
   AdminLogsRoute: typeof AdminLogsRoute
   AdminMonitoringRoute: typeof AdminMonitoringRoute
   AdminOrdersRoute: typeof AdminOrdersRoute
@@ -462,6 +482,7 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminCategoriesRoute: AdminCategoriesRoute,
   AdminFaqRoute: AdminFaqRoute,
   AdminFlashRoute: AdminFlashRoute,
+  AdminHealthRoute: AdminHealthRoute,
   AdminLogsRoute: AdminLogsRoute,
   AdminMonitoringRoute: AdminMonitoringRoute,
   AdminOrdersRoute: AdminOrdersRoute,
