@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Plane, Menu, Globe2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetHeader } from "@/components/ui/sheet";
+import { CurrencyTicker } from "./CurrencyTicker";
 
 const nav = [
   { label: "Авиабилеты", href: "#aviabilety" },
@@ -15,6 +16,7 @@ const nav = [
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/60 glass">
+      <CurrencyTicker />
       <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
         <Link to="/" className="flex items-center gap-2">
           <span className="grid h-9 w-9 place-items-center rounded-xl gradient-ocean text-ocean-foreground shadow-soft">
