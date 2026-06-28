@@ -12,9 +12,19 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as HotelsRouteImport } from './routes/hotels'
 import { Route as FlightsRouteImport } from './routes/flights'
+import { Route as AiRouteImport } from './routes/ai'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as OteliIndexRouteImport } from './routes/oteli.index'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
+import { Route as AviabiletyIndexRouteImport } from './routes/aviabilety.index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as OteliCountryRouteImport } from './routes/oteli.$country'
+import { Route as LegalTermsRouteImport } from './routes/legal.terms'
+import { Route as LegalPrivacyRouteImport } from './routes/legal.privacy'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
+import { Route as AviabiletyRouteRouteImport } from './routes/aviabilety.$route'
+import { Route as ApiAiRouteImport } from './routes/api.ai'
 import { Route as AdminUsersRouteImport } from './routes/admin.users'
 import { Route as AdminTicketsRouteImport } from './routes/admin.tickets'
 import { Route as AdminSitemapRouteImport } from './routes/admin.sitemap'
@@ -51,6 +61,11 @@ const FlightsRoute = FlightsRouteImport.update({
   path: '/flights',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AiRoute = AiRouteImport.update({
+  id: '/ai',
+  path: '/ai',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminRoute = AdminRouteImport.update({
   id: '/admin',
   path: '/admin',
@@ -61,10 +76,55 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OteliIndexRoute = OteliIndexRouteImport.update({
+  id: '/oteli/',
+  path: '/oteli/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AviabiletyIndexRoute = AviabiletyIndexRouteImport.update({
+  id: '/aviabilety/',
+  path: '/aviabilety/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => AdminRoute,
+} as any)
+const OteliCountryRoute = OteliCountryRouteImport.update({
+  id: '/oteli/$country',
+  path: '/oteli/$country',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalTermsRoute = LegalTermsRouteImport.update({
+  id: '/legal/terms',
+  path: '/legal/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalPrivacyRoute = LegalPrivacyRouteImport.update({
+  id: '/legal/privacy',
+  path: '/legal/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AviabiletyRouteRoute = AviabiletyRouteRouteImport.update({
+  id: '/aviabilety/$route',
+  path: '/aviabilety/$route',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAiRoute = ApiAiRouteImport.update({
+  id: '/api/ai',
+  path: '/api/ai',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const AdminUsersRoute = AdminUsersRouteImport.update({
   id: '/users',
@@ -170,6 +230,7 @@ const AdminAnalyticsRoute = AdminAnalyticsRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
+  '/ai': typeof AiRoute
   '/flights': typeof FlightsRoute
   '/hotels': typeof HotelsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -193,10 +254,20 @@ export interface FileRoutesByFullPath {
   '/admin/sitemap': typeof AdminSitemapRoute
   '/admin/tickets': typeof AdminTicketsRoute
   '/admin/users': typeof AdminUsersRoute
+  '/api/ai': typeof ApiAiRoute
+  '/aviabilety/$route': typeof AviabiletyRouteRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/legal/privacy': typeof LegalPrivacyRoute
+  '/legal/terms': typeof LegalTermsRoute
+  '/oteli/$country': typeof OteliCountryRoute
   '/admin/': typeof AdminIndexRoute
+  '/aviabilety/': typeof AviabiletyIndexRoute
+  '/blog/': typeof BlogIndexRoute
+  '/oteli/': typeof OteliIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ai': typeof AiRoute
   '/flights': typeof FlightsRoute
   '/hotels': typeof HotelsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -220,12 +291,22 @@ export interface FileRoutesByTo {
   '/admin/sitemap': typeof AdminSitemapRoute
   '/admin/tickets': typeof AdminTicketsRoute
   '/admin/users': typeof AdminUsersRoute
+  '/api/ai': typeof ApiAiRoute
+  '/aviabilety/$route': typeof AviabiletyRouteRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/legal/privacy': typeof LegalPrivacyRoute
+  '/legal/terms': typeof LegalTermsRoute
+  '/oteli/$country': typeof OteliCountryRoute
   '/admin': typeof AdminIndexRoute
+  '/aviabilety': typeof AviabiletyIndexRoute
+  '/blog': typeof BlogIndexRoute
+  '/oteli': typeof OteliIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
+  '/ai': typeof AiRoute
   '/flights': typeof FlightsRoute
   '/hotels': typeof HotelsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -249,13 +330,23 @@ export interface FileRoutesById {
   '/admin/sitemap': typeof AdminSitemapRoute
   '/admin/tickets': typeof AdminTicketsRoute
   '/admin/users': typeof AdminUsersRoute
+  '/api/ai': typeof ApiAiRoute
+  '/aviabilety/$route': typeof AviabiletyRouteRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/legal/privacy': typeof LegalPrivacyRoute
+  '/legal/terms': typeof LegalTermsRoute
+  '/oteli/$country': typeof OteliCountryRoute
   '/admin/': typeof AdminIndexRoute
+  '/aviabilety/': typeof AviabiletyIndexRoute
+  '/blog/': typeof BlogIndexRoute
+  '/oteli/': typeof OteliIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/admin'
+    | '/ai'
     | '/flights'
     | '/hotels'
     | '/sitemap.xml'
@@ -279,10 +370,20 @@ export interface FileRouteTypes {
     | '/admin/sitemap'
     | '/admin/tickets'
     | '/admin/users'
+    | '/api/ai'
+    | '/aviabilety/$route'
+    | '/blog/$slug'
+    | '/legal/privacy'
+    | '/legal/terms'
+    | '/oteli/$country'
     | '/admin/'
+    | '/aviabilety/'
+    | '/blog/'
+    | '/oteli/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/ai'
     | '/flights'
     | '/hotels'
     | '/sitemap.xml'
@@ -306,11 +407,21 @@ export interface FileRouteTypes {
     | '/admin/sitemap'
     | '/admin/tickets'
     | '/admin/users'
+    | '/api/ai'
+    | '/aviabilety/$route'
+    | '/blog/$slug'
+    | '/legal/privacy'
+    | '/legal/terms'
+    | '/oteli/$country'
     | '/admin'
+    | '/aviabilety'
+    | '/blog'
+    | '/oteli'
   id:
     | '__root__'
     | '/'
     | '/admin'
+    | '/ai'
     | '/flights'
     | '/hotels'
     | '/sitemap.xml'
@@ -334,15 +445,34 @@ export interface FileRouteTypes {
     | '/admin/sitemap'
     | '/admin/tickets'
     | '/admin/users'
+    | '/api/ai'
+    | '/aviabilety/$route'
+    | '/blog/$slug'
+    | '/legal/privacy'
+    | '/legal/terms'
+    | '/oteli/$country'
     | '/admin/'
+    | '/aviabilety/'
+    | '/blog/'
+    | '/oteli/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRouteWithChildren
+  AiRoute: typeof AiRoute
   FlightsRoute: typeof FlightsRoute
   HotelsRoute: typeof HotelsRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  ApiAiRoute: typeof ApiAiRoute
+  AviabiletyRouteRoute: typeof AviabiletyRouteRoute
+  BlogSlugRoute: typeof BlogSlugRoute
+  LegalPrivacyRoute: typeof LegalPrivacyRoute
+  LegalTermsRoute: typeof LegalTermsRoute
+  OteliCountryRoute: typeof OteliCountryRoute
+  AviabiletyIndexRoute: typeof AviabiletyIndexRoute
+  BlogIndexRoute: typeof BlogIndexRoute
+  OteliIndexRoute: typeof OteliIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -368,6 +498,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FlightsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ai': {
+      id: '/ai'
+      path: '/ai'
+      fullPath: '/ai'
+      preLoaderRoute: typeof AiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin': {
       id: '/admin'
       path: '/admin'
@@ -382,12 +519,75 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/oteli/': {
+      id: '/oteli/'
+      path: '/oteli'
+      fullPath: '/oteli/'
+      preLoaderRoute: typeof OteliIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/aviabilety/': {
+      id: '/aviabilety/'
+      path: '/aviabilety'
+      fullPath: '/aviabilety/'
+      preLoaderRoute: typeof AviabiletyIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/': {
       id: '/admin/'
       path: '/'
       fullPath: '/admin/'
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof AdminRoute
+    }
+    '/oteli/$country': {
+      id: '/oteli/$country'
+      path: '/oteli/$country'
+      fullPath: '/oteli/$country'
+      preLoaderRoute: typeof OteliCountryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal/terms': {
+      id: '/legal/terms'
+      path: '/legal/terms'
+      fullPath: '/legal/terms'
+      preLoaderRoute: typeof LegalTermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal/privacy': {
+      id: '/legal/privacy'
+      path: '/legal/privacy'
+      fullPath: '/legal/privacy'
+      preLoaderRoute: typeof LegalPrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/aviabilety/$route': {
+      id: '/aviabilety/$route'
+      path: '/aviabilety/$route'
+      fullPath: '/aviabilety/$route'
+      preLoaderRoute: typeof AviabiletyRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/ai': {
+      id: '/api/ai'
+      path: '/api/ai'
+      fullPath: '/api/ai'
+      preLoaderRoute: typeof ApiAiRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/admin/users': {
       id: '/admin/users'
@@ -585,9 +785,19 @@ const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRouteWithChildren,
+  AiRoute: AiRoute,
   FlightsRoute: FlightsRoute,
   HotelsRoute: HotelsRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  ApiAiRoute: ApiAiRoute,
+  AviabiletyRouteRoute: AviabiletyRouteRoute,
+  BlogSlugRoute: BlogSlugRoute,
+  LegalPrivacyRoute: LegalPrivacyRoute,
+  LegalTermsRoute: LegalTermsRoute,
+  OteliCountryRoute: OteliCountryRoute,
+  AviabiletyIndexRoute: AviabiletyIndexRoute,
+  BlogIndexRoute: BlogIndexRoute,
+  OteliIndexRoute: OteliIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

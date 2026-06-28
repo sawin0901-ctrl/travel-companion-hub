@@ -11,6 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { CookieConsent } from "@/components/site/CookieConsent";
 
 function NotFoundComponent() {
   return (
@@ -100,6 +101,31 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: appCss,
       },
     ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "TravelAgency",
+          name: "JetSale",
+          url: "https://jetsale.online",
+          logo: "https://jetsale.online/logo.png",
+          description:
+            "Российский маркетплейс путешествий: авиабилеты, отели, апартаменты, аренда авто и страховки.",
+          areaServed: "RU",
+          sameAs: [
+            "https://t.me/jetsale",
+            "https://vk.com/jetsale",
+          ],
+          contactPoint: {
+            "@type": "ContactPoint",
+            email: "support@jetsale.online",
+            contactType: "customer support",
+            availableLanguage: ["Russian", "English"],
+          },
+        }),
+      },
+    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,
@@ -134,6 +160,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
+      <CookieConsent />
     </QueryClientProvider>
   );
 }

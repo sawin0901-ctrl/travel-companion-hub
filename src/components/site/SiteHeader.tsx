@@ -5,12 +5,10 @@ import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetHeader } from "@/co
 import { CurrencyTicker } from "./CurrencyTicker";
 
 const nav = [
-  { label: "Авиабилеты", href: "#aviabilety" },
-  { label: "Отели", href: "#oteli" },
-  { label: "Жильё", href: "#zhile" },
-  { label: "Авто", href: "#avto" },
-  { label: "Туры", href: "#tury" },
-  { label: "Блог", href: "#blog" },
+  { label: "Авиабилеты", href: "/aviabilety" },
+  { label: "Отели", href: "/oteli" },
+  { label: "AI-консьерж", href: "/ai" },
+  { label: "Блог", href: "/blog" },
 ];
 
 export function SiteHeader() {
