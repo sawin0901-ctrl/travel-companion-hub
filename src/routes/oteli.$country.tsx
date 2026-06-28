@@ -3,7 +3,7 @@ import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { Button } from "@/components/ui/button";
 import { Calendar, MapPin, Plane, Wallet, CheckCircle2 } from "lucide-react";
-import { DESTINATIONS, getDestination } from "@/lib/destinations";
+import { DESTINATIONS, getDestination, type Destination } from "@/lib/destinations";
 
 export const Route = createFileRoute("/oteli/$country")({
   loader: ({ params }) => {
@@ -73,7 +73,7 @@ export const Route = createFileRoute("/oteli/$country")({
 });
 
 function CountryPage() {
-  const d = Route.useLoaderData();
+  const d = Route.useLoaderData() as Destination;
   const others = DESTINATIONS.filter((x) => x.slug !== d.slug).slice(0, 4);
 
   return (
