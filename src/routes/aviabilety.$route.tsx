@@ -17,12 +17,19 @@ export const Route = createFileRoute("/aviabilety/$route")({
     const r = loaderData;
     const title = `Авиабилеты ${r.from} — ${r.to} от ${r.minPrice.toLocaleString("ru-RU")} ₽ | JetSale`;
     const description = `Дешёвые билеты ${r.from} (${r.fromCode}) — ${r.to} (${r.toCode}). ${r.flightsPerWeek} рейсов в неделю, ${r.durationHours} ч в пути.`;
+    const ogTitle = `${r.from} — ${r.to}`;
+    const ogSub = `от ${r.minPrice.toLocaleString("ru-RU")} ₽ · ${r.durationHours} ч в пути · ${r.flightsPerWeek} рейсов/нед`;
+    const ogImage = `/api/og.svg?t=${encodeURIComponent(ogTitle)}&s=${encodeURIComponent(ogSub)}&e=${encodeURIComponent("✈️")}`;
     return {
       meta: [
         { title },
         { name: "description", content: description },
         { property: "og:title", content: title },
         { property: "og:description", content: description },
+        { property: "og:image", content: ogImage },
+        { property: "og:type", content: "article" },
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:image", content: ogImage },
         { property: "og:url", content: `/aviabilety/${params.route}` },
       ],
       links: [{ rel: "canonical", href: `/aviabilety/${params.route}` }],
