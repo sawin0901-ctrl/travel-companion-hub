@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as HotelsRouteImport } from './routes/hotels'
 import { Route as FlightsRouteImport } from './routes/flights'
+import { Route as AiRouteImport } from './routes/ai'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as OteliIndexRouteImport } from './routes/oteli.index'
@@ -57,6 +58,11 @@ const HotelsRoute = HotelsRouteImport.update({
 const FlightsRoute = FlightsRouteImport.update({
   id: '/flights',
   path: '/flights',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AiRoute = AiRouteImport.update({
+  id: '/ai',
+  path: '/ai',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminRoute = AdminRouteImport.update({
@@ -218,6 +224,7 @@ const AdminAnalyticsRoute = AdminAnalyticsRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
+  '/ai': typeof AiRoute
   '/flights': typeof FlightsRoute
   '/hotels': typeof HotelsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -253,6 +260,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ai': typeof AiRoute
   '/flights': typeof FlightsRoute
   '/hotels': typeof HotelsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -290,6 +298,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
+  '/ai': typeof AiRoute
   '/flights': typeof FlightsRoute
   '/hotels': typeof HotelsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -328,6 +337,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/admin'
+    | '/ai'
     | '/flights'
     | '/hotels'
     | '/sitemap.xml'
@@ -363,6 +373,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/ai'
     | '/flights'
     | '/hotels'
     | '/sitemap.xml'
@@ -399,6 +410,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/admin'
+    | '/ai'
     | '/flights'
     | '/hotels'
     | '/sitemap.xml'
@@ -436,6 +448,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRouteWithChildren
+  AiRoute: typeof AiRoute
   FlightsRoute: typeof FlightsRoute
   HotelsRoute: typeof HotelsRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -470,6 +483,13 @@ declare module '@tanstack/react-router' {
       path: '/flights'
       fullPath: '/flights'
       preLoaderRoute: typeof FlightsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ai': {
+      id: '/ai'
+      path: '/ai'
+      fullPath: '/ai'
+      preLoaderRoute: typeof AiRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin': {
@@ -745,6 +765,7 @@ const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRouteWithChildren,
+  AiRoute: AiRoute,
   FlightsRoute: FlightsRoute,
   HotelsRoute: HotelsRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
