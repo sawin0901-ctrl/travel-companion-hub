@@ -24,6 +24,7 @@ import { Route as LegalTermsRouteImport } from './routes/legal.terms'
 import { Route as LegalPrivacyRouteImport } from './routes/legal.privacy'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as AviabiletyRouteRouteImport } from './routes/aviabilety.$route'
+import { Route as ApiAiRouteImport } from './routes/api.ai'
 import { Route as AdminUsersRouteImport } from './routes/admin.users'
 import { Route as AdminTicketsRouteImport } from './routes/admin.tickets'
 import { Route as AdminSitemapRouteImport } from './routes/admin.sitemap'
@@ -118,6 +119,11 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
 const AviabiletyRouteRoute = AviabiletyRouteRouteImport.update({
   id: '/aviabilety/$route',
   path: '/aviabilety/$route',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAiRoute = ApiAiRouteImport.update({
+  id: '/api/ai',
+  path: '/api/ai',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminUsersRoute = AdminUsersRouteImport.update({
@@ -248,6 +254,7 @@ export interface FileRoutesByFullPath {
   '/admin/sitemap': typeof AdminSitemapRoute
   '/admin/tickets': typeof AdminTicketsRoute
   '/admin/users': typeof AdminUsersRoute
+  '/api/ai': typeof ApiAiRoute
   '/aviabilety/$route': typeof AviabiletyRouteRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/legal/privacy': typeof LegalPrivacyRoute
@@ -284,6 +291,7 @@ export interface FileRoutesByTo {
   '/admin/sitemap': typeof AdminSitemapRoute
   '/admin/tickets': typeof AdminTicketsRoute
   '/admin/users': typeof AdminUsersRoute
+  '/api/ai': typeof ApiAiRoute
   '/aviabilety/$route': typeof AviabiletyRouteRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/legal/privacy': typeof LegalPrivacyRoute
@@ -322,6 +330,7 @@ export interface FileRoutesById {
   '/admin/sitemap': typeof AdminSitemapRoute
   '/admin/tickets': typeof AdminTicketsRoute
   '/admin/users': typeof AdminUsersRoute
+  '/api/ai': typeof ApiAiRoute
   '/aviabilety/$route': typeof AviabiletyRouteRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/legal/privacy': typeof LegalPrivacyRoute
@@ -361,6 +370,7 @@ export interface FileRouteTypes {
     | '/admin/sitemap'
     | '/admin/tickets'
     | '/admin/users'
+    | '/api/ai'
     | '/aviabilety/$route'
     | '/blog/$slug'
     | '/legal/privacy'
@@ -397,6 +407,7 @@ export interface FileRouteTypes {
     | '/admin/sitemap'
     | '/admin/tickets'
     | '/admin/users'
+    | '/api/ai'
     | '/aviabilety/$route'
     | '/blog/$slug'
     | '/legal/privacy'
@@ -434,6 +445,7 @@ export interface FileRouteTypes {
     | '/admin/sitemap'
     | '/admin/tickets'
     | '/admin/users'
+    | '/api/ai'
     | '/aviabilety/$route'
     | '/blog/$slug'
     | '/legal/privacy'
@@ -452,6 +464,7 @@ export interface RootRouteChildren {
   FlightsRoute: typeof FlightsRoute
   HotelsRoute: typeof HotelsRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  ApiAiRoute: typeof ApiAiRoute
   AviabiletyRouteRoute: typeof AviabiletyRouteRoute
   BlogSlugRoute: typeof BlogSlugRoute
   LegalPrivacyRoute: typeof LegalPrivacyRoute
@@ -567,6 +580,13 @@ declare module '@tanstack/react-router' {
       path: '/aviabilety/$route'
       fullPath: '/aviabilety/$route'
       preLoaderRoute: typeof AviabiletyRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/ai': {
+      id: '/api/ai'
+      path: '/api/ai'
+      fullPath: '/api/ai'
+      preLoaderRoute: typeof ApiAiRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/users': {
@@ -769,6 +789,7 @@ const rootRouteChildren: RootRouteChildren = {
   FlightsRoute: FlightsRoute,
   HotelsRoute: HotelsRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  ApiAiRoute: ApiAiRoute,
   AviabiletyRouteRoute: AviabiletyRouteRoute,
   BlogSlugRoute: BlogSlugRoute,
   LegalPrivacyRoute: LegalPrivacyRoute,
