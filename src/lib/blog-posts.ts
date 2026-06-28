@@ -8,6 +8,8 @@ export type BlogPost = {
   image: string;
   intro: string;
   sections: { h: string; p: string }[];
+  relatedDestinations?: string[];
+  relatedRoutes?: string[];
 };
 
 export const BLOG_POSTS: BlogPost[] = [
