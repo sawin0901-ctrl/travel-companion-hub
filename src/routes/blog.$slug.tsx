@@ -2,6 +2,8 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { BLOG_POSTS, getPost, type BlogPost } from "@/lib/blog-posts";
+import { DESTINATIONS } from "@/lib/destinations";
+import { FLIGHT_ROUTES } from "@/lib/flight-routes";
 import { Clock, Calendar, ArrowLeft } from "lucide-react";
 
 export const Route = createFileRoute("/blog/$slug")({
@@ -43,6 +45,18 @@ export const Route = createFileRoute("/blog/$slug")({
             },
           }),
         },
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Главная", item: "/" },
+              { "@type": "ListItem", position: 2, name: "Блог", item: "/blog" },
+              { "@type": "ListItem", position: 3, name: p.title, item: `/blog/${params.slug}` },
+            ],
+          }),
+        },
       ],
     };
   },
@@ -60,6 +74,8 @@ export const Route = createFileRoute("/blog/$slug")({
 function PostPage() {
   const p = Route.useLoaderData() as BlogPost;
   const related = BLOG_POSTS.filter((x) => x.slug !== p.slug).slice(0, 3);
+  const linkedDests = DESTINATIONS.filter((d) => p.relatedDestinations?.includes(d.slug));
+  const linkedRoutes = FLIGHT_ROUTES.filter((r) => p.relatedRoutes?.includes(r.slug));
 
   return (
     <div className="min-h-screen bg-background">
@@ -91,6 +107,47 @@ function PostPage() {
             </section>
           ))}
         </div>
+
+        {(linkedDests.length > 0 || linkedRoutes.length > 0) && (
+          <section className="mt-12 rounded-2xl border border-border bg-card p-6">
+            <h3 className="font-display text-xl font-bold">Что забронировать по теме</h3>
+            {linkedDests.length > 0 && (
+              <div className="mt-4">
+                <div className="text-xs uppercase tracking-wider text-muted-foreground">Отели в стране</div>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {linkedDests.map((d) => (
+                    <Link
+                      key={d.slug}
+                      to="/oteli/$country"
+                      params={{ country: d.slug }}
+                      className="rounded-full border border-border bg-background px-4 py-1.5 text-sm transition-colors hover:border-ocean/40 hover:bg-ocean/5"
+                    >
+                      <span className="mr-1.5">{d.emoji}</span>
+                      {d.country} · {d.avgHotel}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+            {linkedRoutes.length > 0 && (
+              <div className="mt-5">
+                <div className="text-xs uppercase tracking-wider text-muted-foreground">Авиабилеты</div>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {linkedRoutes.map((r) => (
+                    <Link
+                      key={r.slug}
+                      to="/aviabilety/$route"
+                      params={{ route: r.slug }}
+                      className="rounded-full border border-border bg-background px-4 py-1.5 text-sm transition-colors hover:border-ocean/40 hover:bg-ocean/5"
+                    >
+                      {r.from} — {r.to} · от {r.minPrice.toLocaleString("ru-RU")} ₽
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+          </section>
+        )}
 
         <section className="mt-16 border-t border-border pt-10">
           <h3 className="font-display text-xl font-bold">Читайте также</h3>

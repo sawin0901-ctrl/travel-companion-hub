@@ -4,6 +4,7 @@ import { SiteFooter } from "@/components/site/SiteFooter";
 import { Button } from "@/components/ui/button";
 import { Calendar, MapPin, Plane, Wallet, CheckCircle2 } from "lucide-react";
 import { DESTINATIONS, getDestination, type Destination } from "@/lib/destinations";
+import { getPostsByDestination } from "@/lib/blog-posts";
 
 export const Route = createFileRoute("/oteli/$country")({
   loader: ({ params }) => {
@@ -52,6 +53,18 @@ export const Route = createFileRoute("/oteli/$country")({
             })),
           }),
         },
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Главная", item: "/" },
+              { "@type": "ListItem", position: 2, name: "Отели", item: "/oteli" },
+              { "@type": "ListItem", position: 3, name: d.country, item: `/oteli/${params.country}` },
+            ],
+          }),
+        },
       ],
     };
   },
@@ -75,6 +88,7 @@ export const Route = createFileRoute("/oteli/$country")({
 function CountryPage() {
   const d = Route.useLoaderData() as Destination;
   const others = DESTINATIONS.filter((x) => x.slug !== d.slug).slice(0, 4);
+  const posts = getPostsByDestination(d.slug);
 
   return (
     <div className="min-h-screen bg-background">
@@ -191,6 +205,26 @@ function CountryPage() {
             ))}
           </div>
         </section>
+
+        {posts.length > 0 && (
+          <section className="mt-14">
+            <h2 className="font-display text-2xl font-bold md:text-3xl">Полезные статьи о {d.country}</h2>
+            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {posts.slice(0, 6).map((p) => (
+                <Link
+                  key={p.slug}
+                  to="/blog/$slug"
+                  params={{ slug: p.slug }}
+                  className="group rounded-2xl border border-border bg-card p-5 transition-all hover:-translate-y-0.5 hover:border-ocean/40 hover:shadow-soft"
+                >
+                  <div className="text-xs uppercase tracking-wider text-ocean">{p.category}</div>
+                  <div className="mt-2 font-display font-semibold leading-snug">{p.title}</div>
+                  <div className="mt-2 text-sm text-muted-foreground line-clamp-2">{p.description}</div>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
       </main>
 
       <SiteFooter />
