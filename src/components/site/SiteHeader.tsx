@@ -20,7 +20,7 @@ export function SiteHeader() {
             <Plane className="h-4 w-4 -rotate-45" />
           </span>
           <span className="font-display text-lg font-semibold tracking-tight">
-            Wanderly
+            JetSale
           </span>
         </Link>
 

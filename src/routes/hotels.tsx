@@ -18,9 +18,9 @@ import tokyo from "@/assets/dest-tokyo.jpg";
 export const Route = createFileRoute("/hotels")({
   head: () => ({
     meta: [
-      { title: "Отели в Дубае — Wanderly" },
+      { title: "Отели в Дубае — JetSale" },
       { name: "description", content: "1.2 млн отелей по лучшим ценам от Booking, Agoda, Hotels.com и других партнёров." },
-      { property: "og:title", content: "Отели — Wanderly" },
+      { property: "og:title", content: "Отели — JetSale" },
       { property: "og:url", content: "/hotels" },
     ],
     links: [{ rel: "canonical", href: "/hotels" }],
