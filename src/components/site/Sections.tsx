@@ -144,7 +144,15 @@ export function Categories() {
         </p>
       </div>
 
-      <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
+      <style>{`
+        @media (min-width: 1024px) {
+          .jetsale-cats { grid-template-columns: repeat(${Math.min(
+            Math.max(categories.length, 1),
+            8,
+          )}, minmax(0, 1fr)) !important; }
+        }
+      `}</style>
+      <div className="jetsale-cats mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:gap-5">
         {categories.map((c) => {
           const Icon = c.icon;
           return (
