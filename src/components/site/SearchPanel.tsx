@@ -1,10 +1,24 @@
-import { useEffect, useMemo, useState } from "react";
-import { Plane, Hotel, Home, Car, MapPin, ShieldCheck, Search, Calendar, Users, ArrowLeftRight } from "lucide-react";
+import { useEffect, useRef, useMemo, useState } from "react";
+import { Plane, Hotel, Home, Car, MapPin, ShieldCheck, Search, Calendar, Users } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { ALL_CATEGORIES, useEnabledCategories, type CategoryId } from "@/lib/categories";
+
+function AviasalesWidget() {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!ref.current) return;
+    const script = document.createElement("script");
+    script.src = "https://tpwgts.com/content?currency=rub&trs=544190&shmarker=372499&show_hotels=false&powered_by=false&locale=ru&searchUrl=www.aviasales.ru%2Fsearch&primary_override=%2332a8dd&color_button=%2332a8dd&color_icons=%2332a8dd&dark=%23262626&light=%23FFFFFF&secondary=%23FFFFFF&special=%23C4C4C4&color_focused=%2332a8dd&border_radius=0&no_labels=true&plain=true&promo_id=7879&campaign_id=100";
+    script.async = true;
+    script.charset = "utf-8";
+    ref.current.appendChild(script);
+    return () => { script.remove(); };
+  }, []);
+  return <div ref={ref} />;
+}
 
 type TabId = CategoryId;
 
@@ -100,16 +114,7 @@ export function SearchPanel() {
 
       <div className="p-4 md:p-5">
         {active === "flights" && (
-          <div className="grid gap-2 md:grid-cols-[1fr_auto_1fr_1fr_1fr_auto]">
-            <Field label="Откуда" icon={Plane} placeholder="Москва" />
-            <button className="hidden h-full items-center justify-center self-end rounded-xl border border-border bg-background px-2.5 text-muted-foreground transition hover:text-ocean md:flex">
-              <ArrowLeftRight className="h-4 w-4" />
-            </button>
-            <Field label="Куда" icon={Plane} placeholder="Стамбул" />
-            <Field label="Когда" icon={Calendar} placeholder="14 авг" />
-            <Field label="Пассажиры" icon={Users} placeholder="1 взрослый" />
-            {SubmitButton}
-          </div>
+          <AviasalesWidget />
         )}
         {active === "hotels" && (
           <div className="grid gap-2 md:grid-cols-[2fr_1fr_1fr_1fr_auto]">
