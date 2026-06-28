@@ -1,5 +1,6 @@
-import { Star, Flame, TrendingDown, Sparkles, Plane, Hotel, Car, ShieldCheck, MapPin, Award, Heart, Quote } from "lucide-react";
+import { Star, Flame, TrendingDown, Sparkles, Plane, MapPin, Heart, Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ALL_CATEGORIES, useEnabledCategories } from "@/lib/categories";
 import santorini from "@/assets/dest-santorini.jpg";
 import bali from "@/assets/dest-bali.jpg";
 import dubai from "@/assets/dest-dubai.jpg";
@@ -126,16 +127,12 @@ export function HotDeals() {
   );
 }
 
-const categories = [
-  { icon: Plane, label: "Авиабилеты", caption: "от 4 990 ₽", color: "from-sky-400/20 to-sky-600/5" },
-  { icon: Hotel, label: "Отели", caption: "1.2 млн вариантов", color: "from-amber-400/20 to-amber-600/5" },
-  { icon: Car, label: "Аренда авто", caption: "от 1 800 ₽/день", color: "from-emerald-400/20 to-emerald-600/5" },
-  { icon: MapPin, label: "Трансферы", caption: "в 180 странах", color: "from-violet-400/20 to-violet-600/5" },
-  { icon: ShieldCheck, label: "Страховки", caption: "от 150 ₽/день", color: "from-rose-400/20 to-rose-600/5" },
-  { icon: Award, label: "Экскурсии", caption: "32 000 туров", color: "from-cyan-400/20 to-cyan-600/5" },
-];
-
 export function Categories() {
+  const enabled = useEnabledCategories();
+  const categories = ALL_CATEGORIES.filter((c) => enabled[c.id]);
+
+  if (categories.length === 0) return null;
+
   return (
     <section id="zhile" className="container mx-auto px-4 py-20 md:px-6 md:py-28">
       <div className="max-w-2xl">
@@ -152,7 +149,7 @@ export function Categories() {
           const Icon = c.icon;
           return (
             <a
-              key={c.label}
+              key={c.id}
               href="#"
               className="group relative overflow-hidden rounded-2xl border border-border bg-card p-5 transition-all hover:-translate-y-1 hover:border-ocean/40 hover:shadow-soft"
             >
