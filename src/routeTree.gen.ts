@@ -14,6 +14,27 @@ import { Route as HotelsRouteImport } from './routes/hotels'
 import { Route as FlightsRouteImport } from './routes/flights'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminUsersRouteImport } from './routes/admin.users'
+import { Route as AdminTicketsRouteImport } from './routes/admin.tickets'
+import { Route as AdminSitemapRouteImport } from './routes/admin.sitemap'
+import { Route as AdminSeoRouteImport } from './routes/admin.seo'
+import { Route as AdminSecurityRouteImport } from './routes/admin.security'
+import { Route as AdminReviewsRouteImport } from './routes/admin.reviews'
+import { Route as AdminQueueRouteImport } from './routes/admin.queue'
+import { Route as AdminPromocodesRouteImport } from './routes/admin.promocodes'
+import { Route as AdminOrdersRouteImport } from './routes/admin.orders'
+import { Route as AdminMonitoringRouteImport } from './routes/admin.monitoring'
+import { Route as AdminLogsRouteImport } from './routes/admin.logs'
+import { Route as AdminHealthRouteImport } from './routes/admin.health'
+import { Route as AdminFlashRouteImport } from './routes/admin.flash'
+import { Route as AdminFlagsRouteImport } from './routes/admin.flags'
+import { Route as AdminFaqRouteImport } from './routes/admin.faq'
+import { Route as AdminCategoriesRouteImport } from './routes/admin.categories'
+import { Route as AdminCacheRouteImport } from './routes/admin.cache'
+import { Route as AdminBannersRouteImport } from './routes/admin.banners'
+import { Route as AdminBackupsRouteImport } from './routes/admin.backups'
+import { Route as AdminAnalyticsRouteImport } from './routes/admin.analytics'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -40,40 +61,285 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminUsersRoute = AdminUsersRouteImport.update({
+  id: '/users',
+  path: '/users',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminTicketsRoute = AdminTicketsRouteImport.update({
+  id: '/tickets',
+  path: '/tickets',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminSitemapRoute = AdminSitemapRouteImport.update({
+  id: '/sitemap',
+  path: '/sitemap',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminSeoRoute = AdminSeoRouteImport.update({
+  id: '/seo',
+  path: '/seo',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminSecurityRoute = AdminSecurityRouteImport.update({
+  id: '/security',
+  path: '/security',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminReviewsRoute = AdminReviewsRouteImport.update({
+  id: '/reviews',
+  path: '/reviews',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminQueueRoute = AdminQueueRouteImport.update({
+  id: '/queue',
+  path: '/queue',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminPromocodesRoute = AdminPromocodesRouteImport.update({
+  id: '/promocodes',
+  path: '/promocodes',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminOrdersRoute = AdminOrdersRouteImport.update({
+  id: '/orders',
+  path: '/orders',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminMonitoringRoute = AdminMonitoringRouteImport.update({
+  id: '/monitoring',
+  path: '/monitoring',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminLogsRoute = AdminLogsRouteImport.update({
+  id: '/logs',
+  path: '/logs',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminHealthRoute = AdminHealthRouteImport.update({
+  id: '/health',
+  path: '/health',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminFlashRoute = AdminFlashRouteImport.update({
+  id: '/flash',
+  path: '/flash',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminFlagsRoute = AdminFlagsRouteImport.update({
+  id: '/flags',
+  path: '/flags',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminFaqRoute = AdminFaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminCategoriesRoute = AdminCategoriesRouteImport.update({
+  id: '/categories',
+  path: '/categories',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminCacheRoute = AdminCacheRouteImport.update({
+  id: '/cache',
+  path: '/cache',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminBannersRoute = AdminBannersRouteImport.update({
+  id: '/banners',
+  path: '/banners',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminBackupsRoute = AdminBackupsRouteImport.update({
+  id: '/backups',
+  path: '/backups',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminAnalyticsRoute = AdminAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => AdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/admin': typeof AdminRoute
+  '/admin': typeof AdminRouteWithChildren
   '/flights': typeof FlightsRoute
   '/hotels': typeof HotelsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/backups': typeof AdminBackupsRoute
+  '/admin/banners': typeof AdminBannersRoute
+  '/admin/cache': typeof AdminCacheRoute
+  '/admin/categories': typeof AdminCategoriesRoute
+  '/admin/faq': typeof AdminFaqRoute
+  '/admin/flags': typeof AdminFlagsRoute
+  '/admin/flash': typeof AdminFlashRoute
+  '/admin/health': typeof AdminHealthRoute
+  '/admin/logs': typeof AdminLogsRoute
+  '/admin/monitoring': typeof AdminMonitoringRoute
+  '/admin/orders': typeof AdminOrdersRoute
+  '/admin/promocodes': typeof AdminPromocodesRoute
+  '/admin/queue': typeof AdminQueueRoute
+  '/admin/reviews': typeof AdminReviewsRoute
+  '/admin/security': typeof AdminSecurityRoute
+  '/admin/seo': typeof AdminSeoRoute
+  '/admin/sitemap': typeof AdminSitemapRoute
+  '/admin/tickets': typeof AdminTicketsRoute
+  '/admin/users': typeof AdminUsersRoute
+  '/admin/': typeof AdminIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/admin': typeof AdminRoute
   '/flights': typeof FlightsRoute
   '/hotels': typeof HotelsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/backups': typeof AdminBackupsRoute
+  '/admin/banners': typeof AdminBannersRoute
+  '/admin/cache': typeof AdminCacheRoute
+  '/admin/categories': typeof AdminCategoriesRoute
+  '/admin/faq': typeof AdminFaqRoute
+  '/admin/flags': typeof AdminFlagsRoute
+  '/admin/flash': typeof AdminFlashRoute
+  '/admin/health': typeof AdminHealthRoute
+  '/admin/logs': typeof AdminLogsRoute
+  '/admin/monitoring': typeof AdminMonitoringRoute
+  '/admin/orders': typeof AdminOrdersRoute
+  '/admin/promocodes': typeof AdminPromocodesRoute
+  '/admin/queue': typeof AdminQueueRoute
+  '/admin/reviews': typeof AdminReviewsRoute
+  '/admin/security': typeof AdminSecurityRoute
+  '/admin/seo': typeof AdminSeoRoute
+  '/admin/sitemap': typeof AdminSitemapRoute
+  '/admin/tickets': typeof AdminTicketsRoute
+  '/admin/users': typeof AdminUsersRoute
+  '/admin': typeof AdminIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/admin': typeof AdminRoute
+  '/admin': typeof AdminRouteWithChildren
   '/flights': typeof FlightsRoute
   '/hotels': typeof HotelsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/backups': typeof AdminBackupsRoute
+  '/admin/banners': typeof AdminBannersRoute
+  '/admin/cache': typeof AdminCacheRoute
+  '/admin/categories': typeof AdminCategoriesRoute
+  '/admin/faq': typeof AdminFaqRoute
+  '/admin/flags': typeof AdminFlagsRoute
+  '/admin/flash': typeof AdminFlashRoute
+  '/admin/health': typeof AdminHealthRoute
+  '/admin/logs': typeof AdminLogsRoute
+  '/admin/monitoring': typeof AdminMonitoringRoute
+  '/admin/orders': typeof AdminOrdersRoute
+  '/admin/promocodes': typeof AdminPromocodesRoute
+  '/admin/queue': typeof AdminQueueRoute
+  '/admin/reviews': typeof AdminReviewsRoute
+  '/admin/security': typeof AdminSecurityRoute
+  '/admin/seo': typeof AdminSeoRoute
+  '/admin/sitemap': typeof AdminSitemapRoute
+  '/admin/tickets': typeof AdminTicketsRoute
+  '/admin/users': typeof AdminUsersRoute
+  '/admin/': typeof AdminIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/admin' | '/flights' | '/hotels' | '/sitemap.xml'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/flights'
+    | '/hotels'
+    | '/sitemap.xml'
+    | '/admin/analytics'
+    | '/admin/backups'
+    | '/admin/banners'
+    | '/admin/cache'
+    | '/admin/categories'
+    | '/admin/faq'
+    | '/admin/flags'
+    | '/admin/flash'
+    | '/admin/health'
+    | '/admin/logs'
+    | '/admin/monitoring'
+    | '/admin/orders'
+    | '/admin/promocodes'
+    | '/admin/queue'
+    | '/admin/reviews'
+    | '/admin/security'
+    | '/admin/seo'
+    | '/admin/sitemap'
+    | '/admin/tickets'
+    | '/admin/users'
+    | '/admin/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin' | '/flights' | '/hotels' | '/sitemap.xml'
-  id: '__root__' | '/' | '/admin' | '/flights' | '/hotels' | '/sitemap.xml'
+  to:
+    | '/'
+    | '/flights'
+    | '/hotels'
+    | '/sitemap.xml'
+    | '/admin/analytics'
+    | '/admin/backups'
+    | '/admin/banners'
+    | '/admin/cache'
+    | '/admin/categories'
+    | '/admin/faq'
+    | '/admin/flags'
+    | '/admin/flash'
+    | '/admin/health'
+    | '/admin/logs'
+    | '/admin/monitoring'
+    | '/admin/orders'
+    | '/admin/promocodes'
+    | '/admin/queue'
+    | '/admin/reviews'
+    | '/admin/security'
+    | '/admin/seo'
+    | '/admin/sitemap'
+    | '/admin/tickets'
+    | '/admin/users'
+    | '/admin'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/flights'
+    | '/hotels'
+    | '/sitemap.xml'
+    | '/admin/analytics'
+    | '/admin/backups'
+    | '/admin/banners'
+    | '/admin/cache'
+    | '/admin/categories'
+    | '/admin/faq'
+    | '/admin/flags'
+    | '/admin/flash'
+    | '/admin/health'
+    | '/admin/logs'
+    | '/admin/monitoring'
+    | '/admin/orders'
+    | '/admin/promocodes'
+    | '/admin/queue'
+    | '/admin/reviews'
+    | '/admin/security'
+    | '/admin/seo'
+    | '/admin/sitemap'
+    | '/admin/tickets'
+    | '/admin/users'
+    | '/admin/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AdminRoute: typeof AdminRoute
+  AdminRoute: typeof AdminRouteWithChildren
   FlightsRoute: typeof FlightsRoute
   HotelsRoute: typeof HotelsRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -116,12 +382,209 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/users': {
+      id: '/admin/users'
+      path: '/users'
+      fullPath: '/admin/users'
+      preLoaderRoute: typeof AdminUsersRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/tickets': {
+      id: '/admin/tickets'
+      path: '/tickets'
+      fullPath: '/admin/tickets'
+      preLoaderRoute: typeof AdminTicketsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/sitemap': {
+      id: '/admin/sitemap'
+      path: '/sitemap'
+      fullPath: '/admin/sitemap'
+      preLoaderRoute: typeof AdminSitemapRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/seo': {
+      id: '/admin/seo'
+      path: '/seo'
+      fullPath: '/admin/seo'
+      preLoaderRoute: typeof AdminSeoRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/security': {
+      id: '/admin/security'
+      path: '/security'
+      fullPath: '/admin/security'
+      preLoaderRoute: typeof AdminSecurityRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/reviews': {
+      id: '/admin/reviews'
+      path: '/reviews'
+      fullPath: '/admin/reviews'
+      preLoaderRoute: typeof AdminReviewsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/queue': {
+      id: '/admin/queue'
+      path: '/queue'
+      fullPath: '/admin/queue'
+      preLoaderRoute: typeof AdminQueueRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/promocodes': {
+      id: '/admin/promocodes'
+      path: '/promocodes'
+      fullPath: '/admin/promocodes'
+      preLoaderRoute: typeof AdminPromocodesRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/orders': {
+      id: '/admin/orders'
+      path: '/orders'
+      fullPath: '/admin/orders'
+      preLoaderRoute: typeof AdminOrdersRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/monitoring': {
+      id: '/admin/monitoring'
+      path: '/monitoring'
+      fullPath: '/admin/monitoring'
+      preLoaderRoute: typeof AdminMonitoringRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/logs': {
+      id: '/admin/logs'
+      path: '/logs'
+      fullPath: '/admin/logs'
+      preLoaderRoute: typeof AdminLogsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/health': {
+      id: '/admin/health'
+      path: '/health'
+      fullPath: '/admin/health'
+      preLoaderRoute: typeof AdminHealthRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/flash': {
+      id: '/admin/flash'
+      path: '/flash'
+      fullPath: '/admin/flash'
+      preLoaderRoute: typeof AdminFlashRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/flags': {
+      id: '/admin/flags'
+      path: '/flags'
+      fullPath: '/admin/flags'
+      preLoaderRoute: typeof AdminFlagsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/faq': {
+      id: '/admin/faq'
+      path: '/faq'
+      fullPath: '/admin/faq'
+      preLoaderRoute: typeof AdminFaqRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/categories': {
+      id: '/admin/categories'
+      path: '/categories'
+      fullPath: '/admin/categories'
+      preLoaderRoute: typeof AdminCategoriesRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/cache': {
+      id: '/admin/cache'
+      path: '/cache'
+      fullPath: '/admin/cache'
+      preLoaderRoute: typeof AdminCacheRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/banners': {
+      id: '/admin/banners'
+      path: '/banners'
+      fullPath: '/admin/banners'
+      preLoaderRoute: typeof AdminBannersRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/backups': {
+      id: '/admin/backups'
+      path: '/backups'
+      fullPath: '/admin/backups'
+      preLoaderRoute: typeof AdminBackupsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/analytics': {
+      id: '/admin/analytics'
+      path: '/analytics'
+      fullPath: '/admin/analytics'
+      preLoaderRoute: typeof AdminAnalyticsRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
 
+interface AdminRouteChildren {
+  AdminAnalyticsRoute: typeof AdminAnalyticsRoute
+  AdminBackupsRoute: typeof AdminBackupsRoute
+  AdminBannersRoute: typeof AdminBannersRoute
+  AdminCacheRoute: typeof AdminCacheRoute
+  AdminCategoriesRoute: typeof AdminCategoriesRoute
+  AdminFaqRoute: typeof AdminFaqRoute
+  AdminFlagsRoute: typeof AdminFlagsRoute
+  AdminFlashRoute: typeof AdminFlashRoute
+  AdminHealthRoute: typeof AdminHealthRoute
+  AdminLogsRoute: typeof AdminLogsRoute
+  AdminMonitoringRoute: typeof AdminMonitoringRoute
+  AdminOrdersRoute: typeof AdminOrdersRoute
+  AdminPromocodesRoute: typeof AdminPromocodesRoute
+  AdminQueueRoute: typeof AdminQueueRoute
+  AdminReviewsRoute: typeof AdminReviewsRoute
+  AdminSecurityRoute: typeof AdminSecurityRoute
+  AdminSeoRoute: typeof AdminSeoRoute
+  AdminSitemapRoute: typeof AdminSitemapRoute
+  AdminTicketsRoute: typeof AdminTicketsRoute
+  AdminUsersRoute: typeof AdminUsersRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminAnalyticsRoute: AdminAnalyticsRoute,
+  AdminBackupsRoute: AdminBackupsRoute,
+  AdminBannersRoute: AdminBannersRoute,
+  AdminCacheRoute: AdminCacheRoute,
+  AdminCategoriesRoute: AdminCategoriesRoute,
+  AdminFaqRoute: AdminFaqRoute,
+  AdminFlagsRoute: AdminFlagsRoute,
+  AdminFlashRoute: AdminFlashRoute,
+  AdminHealthRoute: AdminHealthRoute,
+  AdminLogsRoute: AdminLogsRoute,
+  AdminMonitoringRoute: AdminMonitoringRoute,
+  AdminOrdersRoute: AdminOrdersRoute,
+  AdminPromocodesRoute: AdminPromocodesRoute,
+  AdminQueueRoute: AdminQueueRoute,
+  AdminReviewsRoute: AdminReviewsRoute,
+  AdminSecurityRoute: AdminSecurityRoute,
+  AdminSeoRoute: AdminSeoRoute,
+  AdminSitemapRoute: AdminSitemapRoute,
+  AdminTicketsRoute: AdminTicketsRoute,
+  AdminUsersRoute: AdminUsersRoute,
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AdminRoute: AdminRoute,
+  AdminRoute: AdminRouteWithChildren,
   FlightsRoute: FlightsRoute,
   HotelsRoute: HotelsRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
