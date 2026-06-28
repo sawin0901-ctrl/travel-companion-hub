@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { Plane, Filter, ArrowRight, Luggage, Clock, Star, ChevronDown, X } from "lucide-react";
+import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetHeader } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -80,8 +81,33 @@ function FlightsPage() {
       <SiteHeader />
       <SearchSummary />
 
-      <div className="container mx-auto grid gap-6 px-4 py-8 md:grid-cols-[280px_1fr] md:px-6">
-        <FlightFilters
+      <div className="container mx-auto grid gap-6 px-4 py-6 md:grid-cols-[280px_1fr] md:px-6 md:py-8">
+        <div className="hidden md:block">
+          <FlightFilters
+            priceMax={priceMax}
+            setPriceMax={setPriceMax}
+            maxStops={maxStops}
+            setMaxStops={setMaxStops}
+            baggageOnly={baggageOnly}
+            setBaggageOnly={setBaggageOnly}
+            airlines={airlines}
+            setAirlines={setAirlines}
+          />
+        </div>
+
+        <div className="md:hidden">
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="outline" className="w-full gap-2">
+                <Filter className="h-4 w-4" /> Фильтры
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="left" className="w-[88vw] max-w-sm overflow-y-auto">
+              <SheetHeader>
+                <SheetTitle>Фильтры</SheetTitle>
+              </SheetHeader>
+              <div className="mt-4">
+                <FlightFilters
           priceMax={priceMax}
           setPriceMax={setPriceMax}
           maxStops={maxStops}
@@ -91,6 +117,10 @@ function FlightsPage() {
           airlines={airlines}
           setAirlines={setAirlines}
         />
+              </div>
+            </SheetContent>
+          </Sheet>
+        </div>
 
         <div>
           <ResultsToolbar count={flights.length} sort={sort} setSort={setSort} kind="перелётов" />
@@ -282,31 +312,31 @@ function FlightFilters(props: {
 
 function FlightCard({ f }: { f: Flight }) {
   return (
-    <article className="group grid gap-4 rounded-2xl border border-border bg-card p-5 transition-all hover:-translate-y-0.5 hover:border-ocean/30 hover:shadow-soft md:grid-cols-[1fr_auto] md:gap-8 md:p-6">
-      <div className="flex items-center gap-5">
-        <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-muted text-2xl">
+    <article className="group grid gap-4 rounded-2xl border border-border bg-card p-4 transition-all hover:-translate-y-0.5 hover:border-ocean/30 hover:shadow-soft sm:p-5 md:grid-cols-[1fr_auto] md:gap-8 md:p-6">
+      <div className="flex items-center gap-3 sm:gap-5">
+        <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-muted text-xl sm:h-12 sm:w-12 sm:text-2xl">
           {f.logo}
         </div>
         <div className="min-w-0 flex-1">
-          <div className="flex items-center justify-between gap-3">
-            <div className="flex items-baseline gap-3">
-              <span className="font-display text-2xl font-bold tabular-nums">{f.depart}</span>
-              <span className="text-sm text-muted-foreground">{f.from}</span>
+          <div className="flex items-center justify-between gap-2">
+            <div className="flex flex-col sm:flex-row sm:items-baseline sm:gap-2">
+              <span className="font-display text-lg font-bold tabular-nums sm:text-2xl">{f.depart}</span>
+              <span className="text-xs text-muted-foreground sm:text-sm">{f.from}</span>
             </div>
-            <div className="flex flex-1 flex-col items-center px-4">
-              <span className="flex items-center gap-1 text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
+            <div className="flex flex-1 flex-col items-center px-2 sm:px-4">
+              <span className="flex items-center gap-1 text-[10px] font-medium uppercase tracking-wider text-muted-foreground sm:text-[11px]">
                 <Clock className="h-3 w-3" /> {f.duration}
               </span>
               <div className="relative my-1 h-px w-full bg-border">
                 <Plane className="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rotate-90 text-ocean" />
               </div>
-              <span className="text-[11px] font-medium text-muted-foreground">
+              <span className="text-[10px] font-medium text-muted-foreground sm:text-[11px]">
                 {f.stops === 0 ? "Прямой" : `${f.stops} пересадка`}
               </span>
             </div>
-            <div className="flex items-baseline gap-3">
-              <span className="font-display text-2xl font-bold tabular-nums">{f.arrive}</span>
-              <span className="text-sm text-muted-foreground">{f.to}</span>
+            <div className="flex flex-col text-right sm:flex-row sm:items-baseline sm:gap-2 sm:text-left">
+              <span className="font-display text-lg font-bold tabular-nums sm:text-2xl">{f.arrive}</span>
+              <span className="text-xs text-muted-foreground sm:text-sm">{f.to}</span>
             </div>
           </div>
           <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
