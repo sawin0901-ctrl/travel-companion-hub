@@ -1,17 +1,32 @@
 import { Plane, Instagram, Send, Youtube, Facebook } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 
-const columns = [
+const columns: { title: string; links: { label: string; to: string }[] }[] = [
   {
     title: "Услуги",
-    links: ["Авиабилеты", "Отели", "Квартиры посуточно", "Аренда авто", "Трансферы", "Страховки", "Экскурсии", "Туры"],
+    links: [
+      { label: "Авиабилеты", to: "/flights" },
+      { label: "Отели", to: "/hotels" },
+      { label: "Направления отелей", to: "/oteli" },
+      { label: "Популярные маршруты", to: "/aviabilety" },
+      { label: "Блог", to: "/blog" },
+    ],
   },
   {
     title: "Компания",
-    links: ["О нас", "Партнёрская программа", "Реферальная программа", "Пресс-центр", "Карьера", "Контакты"],
+    links: [
+      { label: "О нас", to: "/" },
+      { label: "Партнёрская программа", to: "/" },
+      { label: "Контакты", to: "/" },
+    ],
   },
   {
     title: "Помощь",
-    links: ["Центр поддержки", "Как бронировать", "Возврат и обмен", "Правила и условия", "Политика конфиденциальности", "Cookies"],
+    links: [
+      { label: "Политика конфиденциальности", to: "/legal/privacy" },
+      { label: "Публичная оферта", to: "/legal/terms" },
+      { label: "Cookies (152-ФЗ)", to: "/legal/privacy" },
+    ],
   },
 ];
 
@@ -46,10 +61,10 @@ export function SiteFooter() {
             <h4 className="font-display text-sm font-semibold">{col.title}</h4>
             <ul className="mt-4 space-y-2.5">
               {col.links.map((l) => (
-                <li key={l}>
-                  <a href="#" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
-                    {l}
-                  </a>
+                <li key={l.label}>
+                  <Link to={l.to} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+                    {l.label}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -63,8 +78,8 @@ export function SiteFooter() {
           </p>
           <p>
             Обработка персональных данных осуществляется в соответствии с Федеральным законом № 152-ФЗ «О персональных данных». Используя сайт, вы соглашаетесь с{" "}
-            <a href="#" className="underline hover:text-foreground">Политикой конфиденциальности</a> и{" "}
-            <a href="#" className="underline hover:text-foreground">Согласием на обработку ПДн</a>.
+            <Link to="/legal/privacy" className="underline hover:text-foreground">Политикой конфиденциальности</Link> и{" "}
+            <Link to="/legal/terms" className="underline hover:text-foreground">Публичной офертой</Link>.
           </p>
           <div className="flex flex-col items-start justify-between gap-2 pt-2 md:flex-row md:items-center">
             <p>© 2026 JetSale. Сервис работает по партнёрской (affiliate) модели.</p>
