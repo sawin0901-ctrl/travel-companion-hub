@@ -15,6 +15,7 @@ export type Destination = {
   highlights: string[];
   cities: { name: string; note: string }[];
   faqs: { q: string; a: string }[];
+  relatedPosts?: string[];
 };
 
 export const DESTINATIONS: Destination[] = [
